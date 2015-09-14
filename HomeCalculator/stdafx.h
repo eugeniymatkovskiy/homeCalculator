@@ -18,7 +18,7 @@ using namespace std;
 
 //******************** ФУНДАМЕНТ **********************
 
-//материал для изготовления фундамента
+//тип фундамента
 enum FoundMaterial
 {
 	FOUND_CONCRETE,			//бетон
@@ -48,5 +48,6 @@ const string BLOCK_FBS966 = "ФБС9-6-6";			//тип фундаментного блока
 const double FOUND_CONCRETE_WEIGHT = 1800;		//вес 1м3 бетона марки М200 (кг)
 const double FOUND_BLOCK_WEIGHT = 2260;			//вес 1м3 фундаментного блока (кг)
 const double FOUND_STONE_WEIGHT = 1700;			//вес 1м3 бутового камня (кг)
-
-
+//процентная доля цемента в 1м3
+const double FOUND_CONCRETE_IN_STONE = 0.30;	//при использовании камня (%)
+const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)

@@ -5,19 +5,22 @@
 class Foundation
 {
 	private:
-		double length;			//длина (м)
-		double width;			//ширина (м)
-		double height;			//высота (м)
-		double thickness;		//толщина (м)
-		int floorCount;			//к-во этажей
-		bool basement;			//наличие подвала
-		int material;			//материал
-		double area;			//площадь (м2)
-		double volume;			//обьем (м3) 
-		double weight;			//вес (кг)
+		double length;				//длина (м)
+		double width;				//ширина (м)
+		double height;				//высота (м)
+		double thickness;			//толщина (м)
+		int floorCount;				//к-во этажей
+		bool basement;				//наличие подвала
+		int material;				//материал
+		double area;				//площадь (м2)
+		double volume;				//обьем (м3) 
+		//если фундамент из бетона
+		double concreteWeight;		//вес (кг)
+		//если фундамент из камня
+		double stoneWeight;			//вес (кг)
 		//если фундамент из блоков
-		BLOCK block;			//данные выбраного фундаментного блока
-		int blocksCount;		//к-во блоков в фундаменте
+		BLOCK block;				//данные выбраного фундаментного блока
+		int blocksCount;			//к-во блоков в фундаменте
 	
 	public:
 		Foundation(double, double, int, int, bool);
@@ -39,13 +42,15 @@ class Foundation
 		int getMaterial();				//получить материал фундамента (FoundMaterial)
 		double getArea();				//получить площадь фундамента (м2)
 		double getVolume();				//получить обьем фундамента (м3)
-		double getWeight();				//получить вес фундамента (кг)
+		double getConcreteWeight();		//получить вес цемента в фундаменте (кг)
+		double getStoneWeight();		//получить вес камня в фундаменте (кг)
 		BLOCK getSelectedBlock();		//получить тип выбраного блока
 		int getBlocksCount();			//получить к-во блоков в фундаменте
 		void selectBlockType();			//выбрать блок для фундамента
 		void calcArea();				//рассчитать площадь фундамента
 		void calcVolume();				//рассчитать обьем фундамента
-		void calcWeight();				//рассчитать вес фундамента
+		void calcConcreteWeight();		//рассчитать вес бетона в фундаменте
+		void calcStoneWeight();			//рассчитать вес камня в фундаменте
 		void calcBlocksCount();			//рассчитать к-во блоков фундамента
 		void calculate();				//рассчитать все характеристики фундамента
 		virtual ~Foundation();
@@ -70,7 +75,8 @@ Foundation::Foundation(const Foundation& obj)
 	this->material = obj.material;
 	this->area = obj.area;
 	this->volume = obj.volume;
-	this->weight = obj.weight;
+	this->concreteWeight = obj.concreteWeight;
+	this->stoneWeight = obj.stoneWeight;
 	this->block = obj.block;
 	this->blocksCount = obj.blocksCount;
 }
@@ -159,10 +165,15 @@ double Foundation::getVolume()
 {
 	return this->volume;
 }
-//получить вес фундамента (кг)
-double Foundation::getWeight()
+//получить вес цемента в фундаменте (кг)
+double Foundation::getConcreteWeight()
 {
-	return this->weight;
+	return this->concreteWeight;
+}
+//получить вес камня в фундаменте (кг)
+double Foundation::getStoneWeight()
+{
+	return this->stoneWeight;
 }
 //получить тип выбраного блока
 BLOCK Foundation::getSelectedBlock()
@@ -224,25 +235,39 @@ void Foundation::calcVolume()
 {
 	this->volume = this->area * this->height;
 }
-//рассчитать вес фундамента
-void Foundation::calcWeight()
+//рассчитать вес цемента в фундаменте
+void Foundation::calcConcreteWeight()
 {
+	double concreteVolume;
+
 	switch (this->material)
 	{
-		case FOUND_CONCRETE:
-			this->weight = this->volume * FOUND_CONCRETE_WEIGHT;
-			break;
-		case FOUND_BLOCK:
-			this->weight = this->volume * FOUND_BLOCK_WEIGHT;
-			break;
-		case FOUND_STONE:
-			this->weight = this->volume * FOUND_STONE_WEIGHT;
-			break;
-		default:
-			this->weight = 0;
-			break;
+	case FOUND_CONCRETE:
+		this->concreteWeight = this->volume * FOUND_CONCRETE_WEIGHT;
+		break;
+	case FOUND_BLOCK:
+		concreteVolume = this->volume * FOUND_CONCRETE_IN_BLOCK;
+		this->concreteWeight = concreteVolume * FOUND_CONCRETE_WEIGHT;
+		break;
+	case FOUND_STONE:
+		concreteVolume = this->volume * FOUND_CONCRETE_IN_STONE;
+		this->concreteWeight = concreteVolume * FOUND_CONCRETE_WEIGHT;
+		break;
+	default:
+		this->concreteWeight = 0;
+		break;
 	}
 }
+//рассчитать вес камня в фундаменте
+void Foundation::calcStoneWeight()
+{
+	if (this->material == FOUND_STONE)
+	{
+		double stoneVolume = this->volume * (1-FOUND_CONCRETE_IN_STONE);
+		this->stoneWeight = stoneVolume * FOUND_STONE_WEIGHT;
+	}
+}
+
 //рассчитать к-во блоков фундамента
 void Foundation::calcBlocksCount()
 {
@@ -254,13 +279,22 @@ void Foundation::calculate()
 	this->calcArea();
 	this->calcVolume();
 
+	if (this->material == FOUND_CONCRETE)
+	{
+		this->calcConcreteWeight();
+	}
+	if (this->material == FOUND_STONE)
+	{
+		this->calcStoneWeight();
+		this->calcConcreteWeight();
+	}
 	if (this->material == FOUND_BLOCK)
 	{
 		this->selectBlockType();
 		this->calcBlocksCount();
+		this->calcConcreteWeight();
 	}
 
-	this->calcWeight();
 }
 Foundation::~Foundation()
 {
