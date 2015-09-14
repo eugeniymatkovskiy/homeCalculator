@@ -1,12 +1,16 @@
-#include <iostream>
+// homeCalculator.cpp: определяет точку входа для консольного приложения.
+//
 
-using namespace std;
+#include "stdafx.h"
+#include "Roof.h"
 
-int main(){
 
-	cout << "Hello world !!!" << endl;
+int _tmain(int argc, _TCHAR* argv[])
+{
+	Roof newRoof;
+	newRoof.roofPrice();
 
-	system("Pause");
-
+	system("pause");
 	return 0;
 }
+
