@@ -1,11 +1,6 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
 
 #pragma once
 
-//#include "targetver.h"
 #include <stdio.h>
 #include <conio.h>
 #include <string>
@@ -13,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
+#include <math.h>
 
 using namespace std;
 
@@ -21,7 +17,7 @@ using namespace std;
 //тип фундамента
 enum FoundMaterial
 {
-	FOUND_CONCRETE,			//бетон
+	FOUND_CONCRETE = 1,		//бетон
 	FOUND_BLOCK,			//блок
 	FOUND_STONE				//камень
 };
@@ -34,6 +30,20 @@ struct BLOCK
 	double height;		//высота
 	double weight;		//вес
 };
+//фундамент
+const double BASEMENT_HEIGHT = 2.0;				//высота подвала (м)
+const double FOUND_HEIGHT_1FLOOR = 0.5;			//высота фундамента для 1 этажа (м)
+const double FOUND_HEIGHT_2FLOOR = 1.0;			//высота фундамента для 2 этажей (м)
+const double FOUND_HEIGHT_3FLOOR = 1.5;			//высота фундамента для 3 этажей (м)
+const double FOUND_HEIGHT_4FLOOR = 2.0;			//высота фундамента для 4 этажей (м)
+const double FOUND_HEIGHT_5FLOOR = 2.5;			//высота фундамента для 5 этажей (м)
+const double FOUND_THICK_1FLOOR = 0.2;			//толщина фундамента для 1 этажа (м)
+const double FOUND_THICK_2FLOOR = 0.3;			//толщина фундамента для 2 этажей (м)
+const double FOUND_THICK_3FLOOR = 0.4;			//толщина фундамента для 3 этажей (м)
+const double FOUND_THICK_4FLOOR = 0.5;			//толщина фундамента для 4 этажей (м)
+const double FOUND_THICK_5FLOOR = 0.6;			//толщина фундамента для 5 этажей (м)
+
+//параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)
 const double BLOCK_WIDTH_300 = 300;				//ширина фундаментного блока (мм)
 const double BLOCK_WIDTH_400 = 400;				//ширина фундаментного блока (мм)

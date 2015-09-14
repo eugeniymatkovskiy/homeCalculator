@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "HomeCalculator.h"
 
 
 class Foundation
@@ -22,6 +22,17 @@ class Foundation
 		BLOCK block;				//данные выбраного фундаментного блока
 		int blocksCount;			//к-во блоков в фундаменте
 	
+	protected:
+		void init();					//инициализаци€ свойств
+		void selectBlockType();			//выбрать блок дл€ фундамента
+		void calcHeight();				//рассчитать высоту фундамента
+		void calcThickness();			//рассчитать толщину фундамента
+		void calcArea();				//рассчитать площадь фундамента
+		void calcVolume();				//рассчитать обьем фундамента
+		void calcConcreteWeight();		//рассчитать вес бетона в фундаменте
+		void calcStoneWeight();			//рассчитать вес камн€ в фундаменте
+		void calcBlocksCount();			//рассчитать к-во блоков фундамента
+
 	public:
 		Foundation(double, double, int, int, bool);
 		Foundation(const Foundation&);
@@ -46,12 +57,6 @@ class Foundation
 		double getStoneWeight();		//получить вес камн€ в фундаменте (кг)
 		BLOCK getSelectedBlock();		//получить тип выбраного блока
 		int getBlocksCount();			//получить к-во блоков в фундаменте
-		void selectBlockType();			//выбрать блок дл€ фундамента
-		void calcArea();				//рассчитать площадь фундамента
-		void calcVolume();				//рассчитать обьем фундамента
-		void calcConcreteWeight();		//рассчитать вес бетона в фундаменте
-		void calcStoneWeight();			//рассчитать вес камн€ в фундаменте
-		void calcBlocksCount();			//рассчитать к-во блоков фундамента
 		void calculate();				//рассчитать все характеристики фундамента
 		virtual ~Foundation();
 };
@@ -62,10 +67,18 @@ Foundation::Foundation(double length,		//длина фундамента
 						int material,		//материал фундамента
 						bool basement)		//наличие подвала
 {
-
+	this->init();
+	if (length > 0) this->length = length;
+	if (width > 0) this->width = width;
+	if (floorCount > 0) this->floorCount = floorCount;
+	if (material > 0) this->material = material;
+	this->basement = basement;
+	this->calculate();
 }
 Foundation::Foundation(const Foundation& obj)
 {
+	this->init();
+	
 	this->length = obj.length;
 	this->width = obj.width;
 	this->height = obj.height;
@@ -79,6 +92,27 @@ Foundation::Foundation(const Foundation& obj)
 	this->stoneWeight = obj.stoneWeight;
 	this->block = obj.block;
 	this->blocksCount = obj.blocksCount;
+}
+//инициализаци€
+void Foundation::init()
+{
+	this->length = 0.0;
+	this->width = 0.0;
+	this->height = 0.0;
+	this->thickness = 0.0;
+	this->floorCount = 0;
+	this->basement = false;
+	this->material = 0;
+	this->area = 0.0;
+	this->volume = 0.0;
+	this->concreteWeight = 0.0;
+	this->stoneWeight = 0.0;
+	this->block.length = 0.0;
+	this->block.width = 0.0;
+	this->block.height = 0.0;
+	this->block.weight = 0.0;
+	this->block.type = "";
+	this->blocksCount = 0;
 }
 //установить длину фундамента (м)
 void Foundation::setLength(double length)
@@ -190,24 +224,27 @@ void Foundation::selectBlockType()
 {
 	if ((this->material == FOUND_BLOCK) 
 		&& (this->thickness > 0)
-		&& (this->thickness < (BLOCK_WIDTH_600 / 1000)))
+		&& (this->thickness <= (BLOCK_WIDTH_600 / 1000)))
 	{
 		block.length = BLOCK_LENGTH_890;
 		block.height = BLOCK_HEIGTH_580;
 		
-		if (this->thickness <= (BLOCK_WIDTH_600 / 1000))
+		if (this->thickness <= (BLOCK_WIDTH_600 / 1000) &&
+			this->thickness > (BLOCK_WIDTH_500 / 1000))
 		{
 			this->thickness = BLOCK_WIDTH_600 / 1000;
 			block.width = BLOCK_WIDTH_600;
 			block.type = BLOCK_FBS966;
 		}
-		if (this->thickness <= (BLOCK_WIDTH_500 / 1000))
+		if (this->thickness <= (BLOCK_WIDTH_500 / 1000) &&
+			this->thickness > (BLOCK_WIDTH_400 / 1000))
 		{
 			this->thickness = BLOCK_WIDTH_500 / 1000;
 			block.width = BLOCK_WIDTH_500;
 			block.type = BLOCK_FBS956;
 		}
-		if (this->thickness <= (BLOCK_WIDTH_400 / 1000))
+		if (this->thickness <= (BLOCK_WIDTH_400 / 1000) &&
+			this->thickness > (BLOCK_WIDTH_300 / 1000))
 		{
 			this->thickness = BLOCK_WIDTH_400 / 1000;
 			block.width = BLOCK_WIDTH_400;
@@ -219,6 +256,58 @@ void Foundation::selectBlockType()
 			block.width = BLOCK_WIDTH_300;
 			block.type = BLOCK_FBS936;
 		}
+	}
+}
+//рассчитать высоту фундамента
+void Foundation::calcHeight()
+{
+	switch (this->floorCount)
+	{
+		case 1:
+			this->height = FOUND_HEIGHT_1FLOOR;
+			break;
+		case 2:
+			this->height = FOUND_HEIGHT_2FLOOR;
+			break;
+		case 3:
+			this->height = FOUND_HEIGHT_3FLOOR;
+			break;
+		case 4:
+			this->height = FOUND_HEIGHT_4FLOOR;
+			break;
+		case 5:
+			this->height = FOUND_HEIGHT_5FLOOR;
+			break;
+		default:
+			this->height = 0;
+			break;
+	}
+	if (this->basement && this->height < BASEMENT_HEIGHT)
+		this->height = BASEMENT_HEIGHT;
+}
+//рассчитать толщину фундамента
+void Foundation::calcThickness()
+{
+	switch (this->floorCount)
+	{
+		case 1:
+			this->thickness = FOUND_THICK_1FLOOR;
+			break;
+		case 2:
+			this->thickness = FOUND_THICK_2FLOOR;
+			break;
+		case 3:
+			this->thickness = FOUND_THICK_3FLOOR;
+			break;
+		case 4:
+			this->thickness = FOUND_THICK_4FLOOR;
+			break;
+		case 5:
+			this->thickness = FOUND_THICK_5FLOOR;
+			break;
+		default:
+			this->thickness = 0;
+			break;
 	}
 }
 //рассчитать площадь фундамента
@@ -267,15 +356,51 @@ void Foundation::calcStoneWeight()
 		this->stoneWeight = stoneVolume * FOUND_STONE_WEIGHT;
 	}
 }
-
 //рассчитать к-во блоков фундамента
 void Foundation::calcBlocksCount()
 {
+	int levelsCount;		//к-во €русов
+	int blocksSideA;		//к-во блоков вдоль фундамента
+	int blocksSideB;		//к-во блоков поперек фундамента
+	int blocksOneLevel;		//к-во блоков в одном €русе
+	double blkLength;
+	double blkWidth;
+	double blkHeight;
 
+	
+	if (this->block.height > 0 &&
+		this->block.width > 0 &&
+		this->block.length > 0 &&
+		this->length > 0 &&
+		this->width > 0 &&
+		this->height > 0		)
+	{
+		//размеры блока в метрах
+		blkLength = (this->block.length + 10) / 1000;
+		blkWidth = (this->block.width / 1000);
+		blkHeight = (this->block.height + 20) / 1000;
+		
+		//к-во €русов
+		levelsCount = ceil(this->height / blkHeight);
+		//измен€ем высоту фундамента в соответствии с количеством блоков
+		this->height = ((double)levelsCount) * blkHeight;
+		//к-во блоков вдоль фундамента
+		blocksSideA = ceil((this->length - blkWidth) / blkLength);
+		//к-во блоков поперек фундамента
+		blocksSideB = ceil((this->width - blkWidth) / blkLength);
+		//к-во блоков в одном €русе
+		blocksOneLevel = (blocksSideA + blocksSideB) * 2;
+		//общее к-во блоков
+		this->blocksCount = blocksOneLevel * levelsCount;
+
+	}
+	
 }
 //рассчитать все характеристики фундамента
 void Foundation::calculate()
 {
+	this->calcHeight();
+	this->calcThickness();
 	this->calcArea();
 	this->calcVolume();
 
