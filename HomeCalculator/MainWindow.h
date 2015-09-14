@@ -14,7 +14,8 @@ public:
 	HWND get_hWnd();
 	void loop(MSG messages);
 	void show(int cmdShow);
-	static	LRESULT CALLBACK	WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+	void textout(const TCHAR* string, int x, int y);
+	 static	LRESULT CALLBACK	WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		switch (message)                  /* handle the messages */
 		{

@@ -80,3 +80,11 @@ void MainWindow::show(int cmdShow)
 {
 	ShowWindow(this->hWnd, cmdShow);
 }
+
+void MainWindow::textout(const TCHAR* string, int x, int y)
+{
+	 int lenght = _tcslen(string);
+	 HDC hdc = GetDC(this->hWnd);
+	 TextOut(hdc, x, y, string, lenght);
+	 ReleaseDC(this->hWnd, hdc);
+}

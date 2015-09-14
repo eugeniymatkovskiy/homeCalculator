@@ -25,17 +25,9 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	MainWindow* main_window = new MainWindow(hInstance,"HomeCalculator", 10, 10, 500, 500);
 	main_window->show(nCmdShow);
 	GetMessage(&msg, NULL, 0, 0);
-	main_window->loop(msg);
+	main_window->textout("HomeCalculator-������ ������������ �����", 20, 20);
 
-	// Main message loop:
-	//while (GetMessage(&msg, NULL, 0, 0))
-	//{
-	//	
-	//	
-	//		TranslateMessage(&msg);
-	//		DispatchMessage(&msg);
-	//	
-	//}
 
+	main_window->loop(msg);// ������������� ������� !!!
 	return (int)msg.wParam;
 }
