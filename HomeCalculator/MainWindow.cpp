@@ -12,6 +12,7 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+	DestroyWindow(this->hWnd);
 }
 
 MainWindow::MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int width, int height)
@@ -51,18 +52,12 @@ HWND MainWindow::get_hWnd()
 	return this->hWnd;
 }
 
-//LRESULT CALLBACK	WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-//{
-//	switch (message)                  /* handle the messages */
-//	{
-//	case WM_DESTROY:
-//		PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
-//		break;
-//	default:                      /* for messages that we don't deal with */
-//		return DefWindowProc(hWnd, message, wParam, lParam);
-//	}
-//	return 0;
-//}
+HINSTANCE MainWindow::get_hinst()
+{
+	return this->hinst;
+}
+
+
 
 void MainWindow::loop(MSG messages)
 {

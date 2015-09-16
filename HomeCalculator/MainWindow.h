@@ -12,6 +12,7 @@ public:
 	MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int width, int height);
 	virtual ~MainWindow();
 	HWND get_hWnd();
+	HINSTANCE get_hinst();
 	void loop(MSG messages);
 	void show(int cmdShow);
 	void textout(const TCHAR* string, int x, int y);
@@ -28,6 +29,7 @@ public:
 		return 0;
 	}
 private:
+	HINSTANCE hinst;
 	HWND hWnd;
 	WNDCLASSEX wcex;
 
