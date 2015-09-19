@@ -61,3 +61,12 @@ const double FOUND_STONE_WEIGHT = 1700;			//вес 1м3 бутового камня (кг)
 //процентная доля цемента в 1м3
 const double FOUND_CONCRETE_IN_STONE = 0.30;	//при использовании камня (%)
 const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)
+
+//******************** ЗДАНИЕ **********************
+
+struct MATERIAL
+{
+	string type;		//тип
+	double count;		//к-во
+	string unit;		//ед. измерения
+};

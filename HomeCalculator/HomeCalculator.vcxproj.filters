@@ -26,5 +26,8 @@
     <ClInclude Include="HomeCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

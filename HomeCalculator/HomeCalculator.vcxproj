@@ -67,6 +67,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Building.h" />
     <ClInclude Include="Foundation.h" />
     <ClInclude Include="HomeCalculator.h" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 #include "HomeCalculator.h"
+#include "Building.h"
 #include "Foundation.h"
 
 //debug function
