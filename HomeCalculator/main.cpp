@@ -11,6 +11,7 @@
 
 #include "MainWindow.h"
 #include "GuiControl.h"
+#include "OpenGLViewPort.h"
 
 using namespace std;
 
@@ -27,21 +28,27 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	main_window->show(nCmdShow);
  	//**********TEST GUI ************************************************
 	
-	GuiControl* OK_button = new GuiControl("BUTTON", "пїЅпїЅпїЅпїЅпїЅпїЅ", main_window->get_hWnd(),225,430, 50, 20,
+	GuiControl* OK_button = new GuiControl("BUTTON", "Расчет", main_window->get_hWnd(),225,430, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 	OK_button->show(nCmdShow);
-	GuiControl* Edit = new GuiControl("EDIT", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", main_window->get_hWnd(), 50, 50, 200, 20,
+	GuiControl* Edit = new GuiControl("EDIT", "Ввод данных", main_window->get_hWnd(), 50, 50, 200, 20,
 		WS_BORDER | WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL);
 	
 	Edit->show(nCmdShow);
 
 	
+	main_window->textout("HomeCalculator-расчет строительной сметы", 20, 20);
 
-	main_window->textout("HomeCalculator-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 20, 20);
+	//OpenGLViewPort* glPort = new OpenGLViewPort(main_window->get_hWnd(), 200, 10, 200, 200);
 
+	//glPort->enableOpenGL();
+	//glPort->testOpenGL();
+
+	//glPort->show(nCmdShow);
+	
 	//************************TEST GUI ****************************************
 
 	GetMessage(&msg, NULL, 0, 0);
-	main_window->loop(msg);// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ !!!
+	main_window->loop(msg);// предпоследняя строчка !!!
 	return (int)msg.wParam;
 }
