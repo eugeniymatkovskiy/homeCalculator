@@ -21,6 +21,10 @@ enum FoundMaterial
 	FOUND_BLOCK,			//блок
 	FOUND_STONE				//камень
 };
+//тип материала
+string MTRL_CONCRETE = "бетон";
+string MTRL_STONE = "камень";
+string MTRL_BLOCK = "блок";
 //структура для хранения данных разных фундаментных блоков
 struct BLOCK
 {
@@ -67,6 +71,16 @@ const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)
 struct MATERIAL
 {
 	string type;		//тип
+	double length;		//длина
+	double width;		//ширина
+	double height;		//высота
 	double count;		//к-во
-	string unit;		//ед. измерения
+	int unit;			//ед. измерения
+};
+//единици измерения
+enum Units
+{
+	NONE,		//неопределено
+	KILOS,		//килограмм
+	PIECES,		//штук
 };
