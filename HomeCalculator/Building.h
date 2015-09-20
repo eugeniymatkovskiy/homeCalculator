@@ -10,7 +10,6 @@ class Building
 		double width;						//ширина (м)
 		double height;						//высота (м)
 		int floorCount;						//к-во этажей
-		vector<MATERIAL*> materials;		//список материалов
 		Foundation* foundation;				//фундамент
 		//Floor* floor;						//этаж(и)
 		//Roof* roof;						//крыша
@@ -21,11 +20,16 @@ class Building
 		void calcRoofMaterials();			//рассчитать материалы для криши
 
 	public:
-		void setLength(double);				//установить длину здания (м)
-		void setWidth(double);				//установить ширину здания (м)
-		void setHeight(double);				//установить высоту здания (м)
-		double getLength();					//получить длину здания (м)
-		double getWidth();					//получить ширину здания (м)
-		double getHeight();					//получить высоту здания (м)
-		vector<MATERIAL*> getMaterials();	//получить список всех материалов 
+		Building(double, double, int);
+		Building(const Building&);
+		void setLength(double);						//установить длину здания (м)
+		void setWidth(double);						//установить ширину здания (м)
+		void setHeight(double);						//установить высоту здания (м)
+		double getLength();							//получить длину здания (м)
+		double getWidth();							//получить ширину здания (м)
+		double getHeight();							//получить высоту здания (м)
+		void createFoundation(int, bool);			//создать фундамент
+		//void createFloor();						//создать этаж
+		//void createRoof();						//создать крышу
+		~Building();
 };

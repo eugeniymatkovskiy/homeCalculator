@@ -455,6 +455,7 @@ void Foundation::addMaterials(vector<MATERIAL>& materials)
 			{
 				(*it).count += this->getConcreteWeight();
 				mtrlAdded = true;
+				break;
 			}
 		}
 		//если текущего материала нет в списке - добавляем его в конец
@@ -485,6 +486,7 @@ void Foundation::addMaterials(vector<MATERIAL>& materials)
 			{
 				(*it).count += this->getStoneWeight();
 				mtrlAdded = true;
+				break;
 			}		
 		}
 		//если текущего материала нет в списке - добавляем его в конец
@@ -511,10 +513,11 @@ void Foundation::addMaterials(vector<MATERIAL>& materials)
 		//если есть, то добавляем к-во к нему
 		for (it = materials.begin(); it != materials.end(); it++)
 		{
-			if ((*it).type == MTRL_STONE && (*it).unit == KILOS)
+			if ((*it).type == this->getSelectedBlock().type && (*it).unit == PIECES)
 			{
 				(*it).count += this->getBlocksCount();
 				mtrlAdded = true;
+				break;
 			}
 		}
 		//если текущего материала нет в списке - добавляем его в конец
@@ -522,10 +525,10 @@ void Foundation::addMaterials(vector<MATERIAL>& materials)
 	}
 }
 void Foundation::unitTest(double length,		//длина фундамента
-	double width,		//ширина фундамента
-	int floorCount,		//к-во этажей над фундаментом
-	int material,		//материал фундамента
-	bool basement)		//наличие подвала
+							double width,		//ширина фундамента
+							int floorCount,		//к-во этажей над фундаментом
+							int material,		//материал фундамента
+							bool basement)		//наличие подвала
 {
 	this->init();
 	this->length = length;
