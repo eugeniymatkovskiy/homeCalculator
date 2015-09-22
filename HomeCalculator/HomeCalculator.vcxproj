@@ -71,6 +71,7 @@
     <ClCompile Include="OpenGLViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GuiCheckBox.h" />
     <ClInclude Include="GuiControl.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="OpenGLViewPort.h" />
