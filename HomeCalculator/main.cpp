@@ -37,9 +37,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	
 	Edit->show(nCmdShow);
 
-	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hWnd(), 100, 100, 20, 20);
+	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hWnd(), 100, 100, 100, 20);
+	checkbox->set_text(OK_button->get_text());
 	checkbox->show(nCmdShow);
-
+	
 	main_window->textout("HomeCalculator-расчет строительной сметы", 20, 20);
 
 	//OpenGLViewPort* glPort = new OpenGLViewPort(main_window->get_hWnd(), 200, 10, 200, 200);
