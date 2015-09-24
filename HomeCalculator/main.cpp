@@ -13,6 +13,7 @@
 #include "GuiControl.h"
 #include "OpenGLViewPort.h"
 #include "GuiCheckBox.h"
+#include "GuiEditNum.h"
 
 using namespace std;
 
@@ -32,16 +33,27 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	GuiControl* OK_button = new GuiControl("BUTTON", "Расчет", main_window->get_hWnd(),225,430, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 	OK_button->show(nCmdShow);
-	GuiControl* Edit = new GuiControl("EDIT", "Ввод данных", main_window->get_hWnd(), 50, 50, 200, 20,
+	/*GuiControl* Edit = new GuiControl("EDIT", "Ввод данных", main_window->get_hWnd(), 50, 50, 200, 20,
 		WS_BORDER | WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL);
 	
-	Edit->show(nCmdShow);
+	Edit->show(nCmdShow);*/
 
-	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hWnd(), 100, 100, 100, 20);
-	checkbox->set_text(OK_button->get_text());
+	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hWnd(), 20, 170, 100, 20);
+	checkbox->set_text("Подвал");
 	checkbox->show(nCmdShow);
+	GuiEditNum* length_edit = new GuiEditNum(main_window->get_hWnd(), 200, 80, 100, 20);
+	length_edit->show(nCmdShow);
+	GuiEditNum* width_edit = new GuiEditNum(main_window->get_hWnd(), 200, 110, 100, 20);
+	width_edit->show(nCmdShow);
 	
 	main_window->textout("HomeCalculator-расчет строительной сметы", 20, 20);
+	main_window->textout("Тип здания", 20, 50);
+	main_window->textout("Длина здания", 20, 80);
+	main_window->textout("Ширина здания", 20, 110);
+	main_window->textout("Материал фундамента", 20, 140);
+	main_window->textout("Материал стен", 20, 200);
+	main_window->textout("Материал крыши", 20, 230);
+	main_window->textout("Материал перекрытий", 20, 260);
 
 	//OpenGLViewPort* glPort = new OpenGLViewPort(main_window->get_hWnd(), 200, 10, 200, 200);
 

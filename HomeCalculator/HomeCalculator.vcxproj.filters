@@ -41,5 +41,8 @@
     <ClInclude Include="GuiCheckBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GuiEditNum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

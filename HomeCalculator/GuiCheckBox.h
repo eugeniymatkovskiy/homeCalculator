@@ -8,7 +8,7 @@ using namespace std;
 class GuiCheckBox : public GuiControl
 {
 public:
-	GuiCheckBox();
+	GuiCheckBox(){}
    ~GuiCheckBox(){	DestroyWindow(this->hwnd);	}
    GuiCheckBox(HWND owner, int x, int y, int width, int height) :
 	   GuiControl("BUTTON", "", owner, x, y, width, height, WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX){}

@@ -7,6 +7,10 @@ using namespace std;
 
 class MainWindow
 {
+private:
+	HINSTANCE hinst;
+	HWND hWnd;
+	WNDCLASSEX wcex;
 public:
 	MainWindow();
 	MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int width, int height);
@@ -20,6 +24,7 @@ public:
 	{
 		switch (message)                  /* handle the messages */
 		{
+		
 		case WM_DESTROY:
 			PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
 			break;
@@ -28,10 +33,7 @@ public:
 		}
 		return 0;
 	}
-private:
-	HINSTANCE hinst;
-	HWND hWnd;
-	WNDCLASSEX wcex;
+
 
 };
 
