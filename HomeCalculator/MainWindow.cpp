@@ -4,6 +4,7 @@
 
 #include "MainWindow.h"
 
+MainWindow* MainWindow::base_window=0;
 
 MainWindow::MainWindow()
 {
@@ -12,10 +13,10 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
-	DestroyWindow(this->hWnd);
+	DestroyWindow(this->hwnd);
 }
 
-MainWindow::MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int width, int height)
+MainWindow::MainWindow(const TCHAR* title, int x, int y, int width, int height)
 {
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	
@@ -23,7 +24,7 @@ MainWindow::MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int wid
 	wcex.lpfnWndProc =MainWindow::WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
-	wcex.hInstance = hInst;
+	wcex.hInstance = GetModuleHandle(NULL);
 	wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
@@ -32,7 +33,7 @@ MainWindow::MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int wid
 	wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	RegisterClassEx(&wcex);
 
-	hWnd = CreateWindowEx(0,
+	this->hwnd = CreateWindowEx(0,
 		"HomeCalculator",
 		title,
 		WS_OVERLAPPEDWINDOW,
@@ -42,14 +43,15 @@ MainWindow::MainWindow(HINSTANCE hInst,const TCHAR* title, int x, int y, int wid
 		height,
 		NULL,
 		NULL,
-		hInst,
+		GetModuleHandle(NULL),
 		NULL);
+	this->hinst = GetModuleHandle(NULL);
 
 }
 
-HWND MainWindow::get_hWnd()
+HWND MainWindow::get_hwnd()
 {
-	return this->hWnd;
+	return this->hwnd;
 }
 
 HINSTANCE MainWindow::get_hinst()
@@ -73,13 +75,13 @@ void MainWindow::loop(MSG messages)
 
 void MainWindow::show(int cmdShow)
 {
-	ShowWindow(this->hWnd, cmdShow);
+	ShowWindow(this->hwnd, cmdShow);
 }
 
 void MainWindow::textout(const TCHAR* string, int x, int y)
 {
 	 int lenght = _tcslen(string);
-	 HDC hdc = GetDC(this->hWnd);
+	 HDC hdc = GetDC(this->hwnd);
 	 TextOut(hdc, x, y, string, lenght);
-	 ReleaseDC(this->hWnd, hdc);
+	 ReleaseDC(this->hwnd, hdc);
 }

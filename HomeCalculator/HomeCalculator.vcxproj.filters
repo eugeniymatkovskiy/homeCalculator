@@ -44,5 +44,8 @@
     <ClInclude Include="GuiEditNum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GuiComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GuiCheckBox.h" />
+    <ClInclude Include="GuiComboBox.h" />
     <ClInclude Include="GuiControl.h" />
     <ClInclude Include="GuiEditNum.h" />
     <ClInclude Include="MainWindow.h" />
