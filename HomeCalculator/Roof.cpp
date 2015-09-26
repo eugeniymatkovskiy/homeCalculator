@@ -121,7 +121,7 @@ void Roof::roofSize() {
 			}
 		}
 
-		slateAmount = (ceil(houseLength / slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
+		slateAmount = (int) (ceil(houseLength / slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
 	}
 	//визначення кількості металочерепиці
 	else if (roofType == 1) {
