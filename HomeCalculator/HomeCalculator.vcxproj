@@ -78,6 +78,11 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="OpenGLViewPort.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="Foundation.h" />
+    <ClInclude Include="HomeCalculator.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
