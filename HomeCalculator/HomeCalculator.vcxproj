@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -64,7 +65,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GuiControl.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OpenGLViewPort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GuiCheckBox.h" />
+    <ClInclude Include="GuiComboBox.h" />
+    <ClInclude Include="GuiControl.h" />
+    <ClInclude Include="GuiEditNum.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OpenGLViewPort.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
