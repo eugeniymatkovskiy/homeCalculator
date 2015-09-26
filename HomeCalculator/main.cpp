@@ -11,6 +11,7 @@
 #include <memory.h>
 #include <tchar.h>
 
+#include "stdafx.h"
 #include "MainWindow.h"
 #include "GuiControl.h"
 #include "OpenGLViewPort.h"
@@ -18,6 +19,7 @@
 #include "GuiEditNum.h"
 #include "GuiComboBox.h"
 #include "Roof.h"
+#include "HomeCalculator.h"
 
 using namespace std;
 
@@ -34,7 +36,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	main_window->show(nCmdShow);
  	//**********TEST GUI ************************************************
 	
-	GuiControl* OK_button = new GuiControl("BUTTON", "Ðàñ÷åò", main_window->get_hwnd(),225,430, 50, 20,
+	GuiControl* OK_button = new GuiControl("BUTTON", "Расчет", main_window->get_hwnd(),225,430, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 	OK_button->show(nCmdShow);
 	/*GuiControl* Edit = new GuiControl("EDIT", "Ââîä äàííûõ", main_window->get_hWnd(), 50, 50, 200, 20,
@@ -58,7 +60,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	mat_fund_box->show(nCmdShow);
 	
 	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hwnd(), 20, 200, 100, 20);
-	checkbox->set_text("Ïîäâàë");
+	checkbox->set_text("подвал");
 	checkbox->show(nCmdShow);
 
 	GuiComboBox* mat_wall_box = new GuiComboBox(main_window->get_hwnd(), 200, 230, 100, 20);
@@ -69,16 +71,16 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	GuiComboBox* mat_panel_box = new GuiComboBox(main_window->get_hwnd(), 200, 290, 100, 20);
 	mat_panel_box->show(nCmdShow);
-
-	main_window->textout("HomeCalculator-ðàñ÷åò ñòðîèòåëüíîé ñìåòû", 20, 20);
-	main_window->textout("Òèï çäàíèÿ", 20, 50);
-	main_window->textout("×èñëî ýòàæåé", 20, 80);
-	main_window->textout("Äëèíà çäàíèÿ", 20, 110);
-	main_window->textout("Øèðèíà çäàíèÿ", 20, 140);
-	main_window->textout("Ìàòåðèàë ôóíäàìåíòà", 20, 170);
-	main_window->textout("Ìàòåðèàë ñòåí", 20, 230);
-	main_window->textout("Ìàòåðèàë êðûøè", 20, 260);
-	main_window->textout("Ìàòåðèàë ïåðåêðûòèé", 20, 290);
+	
+	/*main_window->textout("HomeCalculator", 20, 20);
+	main_window->textout("Тип здания", 20, 50);
+	main_window->textout("Число этажей", 20, 80);
+	main_window->textout("Длина здания", 20, 110);
+	main_window->textout("Ширина здания", 20, 140);
+	main_window->textout("Материал фундамента", 20, 170);
+	main_window->textout("Материал стен", 20, 230);
+	main_window->textout("Материал крыши", 20, 260);
+	main_window->textout("Материал перекрытий", 20, 290);*/
 
 	//OpenGLViewPort* glPort = new OpenGLViewPort(main_window->get_hWnd(), 200, 10, 200, 200);
 
