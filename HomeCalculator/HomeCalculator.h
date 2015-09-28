@@ -77,6 +77,7 @@ struct MATERIAL
 	double height;		//высота
 	double count;		//к-во
 	int unit;			//ед. измерения
+	double price;		//цена за единицу
 };
 //единици измерения
 enum Units
