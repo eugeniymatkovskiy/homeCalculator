@@ -19,7 +19,6 @@ int main(){
 	f1.calculate();
 	f1.addMaterials(materials);
 
-
 	f1.unitTest(20, 10, 2, FOUND_BLOCK, 1);
 
 	system("Pause");
