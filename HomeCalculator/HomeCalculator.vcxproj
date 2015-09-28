@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -64,12 +65,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GuiControl.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OpenGLViewPort.cpp" />
+    <ClCompile Include="Roof.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
     <ClInclude Include="Foundation.h" />
+    <ClInclude Include="GuiCheckBox.h" />
+    <ClInclude Include="GuiComboBox.h" />
+    <ClInclude Include="GuiControl.h" />
+    <ClInclude Include="GuiEditNum.h" />
     <ClInclude Include="HomeCalculator.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OpenGLViewPort.h" />
+    <ClInclude Include="Roof.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
