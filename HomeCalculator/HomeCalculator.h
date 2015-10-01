@@ -71,6 +71,8 @@ const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)
 
 struct MATERIAL
 {
+	int id;				//id материала
+	int groupId;		//id групы материалов
 	string type;		//тип
 	double length;		//длина
 	double width;		//ширина
