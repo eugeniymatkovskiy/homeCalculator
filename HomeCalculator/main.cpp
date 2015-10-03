@@ -32,14 +32,14 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	MainWindow* main_window = MainWindow::get_main_window("HomeCalculator", 10, 10, 500, 500);
 	main_window->show(nCmdShow);
- 	//**********TEST GUI ************************************************
-	
-	GuiControl* OK_button = new GuiControl("BUTTON", "Расчет", main_window->get_hwnd(),225,430, 50, 20,
+	//**********TEST GUI ************************************************
+
+	GuiControl* OK_button = new GuiControl("BUTTON", "Расчет", main_window->get_hwnd(), 225, 430, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 	OK_button->show(nCmdShow);
 	/*GuiControl* Edit = new GuiControl("EDIT", "Ввод данных", main_window->get_hWnd(), 50, 50, 200, 20,
-		WS_BORDER | WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL);
-	
+	WS_BORDER | WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL);
+
 	Edit->show(nCmdShow);*/
 
 	GuiComboBox* type_build_box = new GuiComboBox(main_window->get_hwnd(), 200, 50, 100, 20);
@@ -56,7 +56,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	GuiComboBox* mat_fund_box = new GuiComboBox(main_window->get_hwnd(), 200, 170, 100, 20);
 	mat_fund_box->show(nCmdShow);
-	
+
 	GuiCheckBox* checkbox = new GuiCheckBox(main_window->get_hwnd(), 20, 200, 100, 20);
 	checkbox->set_text("Подвал");
 	checkbox->show(nCmdShow);
@@ -86,7 +86,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	//glPort->testOpenGL();
 
 	//glPort->show(nCmdShow);
-	
+
 	//************************TEST GUI ****************************************
 
 	GetMessage(&msg, NULL, 0, 0);
@@ -104,6 +104,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	delete mat_roof_box;
 	delete mat_panel_box;
 	delete main_window;
-	
+
 	return (int)msg.wParam;
 }

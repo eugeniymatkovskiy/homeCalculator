@@ -69,6 +69,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="OpenGLViewPort.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Roof.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
@@ -81,10 +82,12 @@
     <ClInclude Include="GuiControl.h" />
     <ClInclude Include="GuiEditNum.h" />
     <ClInclude Include="Home.h" />
+    <ClInclude Include="Dependencies.h" />
     <ClInclude Include="HomeCalculator.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Office.h" />
     <ClInclude Include="OpenGLViewPort.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Roof.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Storage.h" />

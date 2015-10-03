@@ -1,6 +1,5 @@
 
 #pragma once
-
 #include <stdio.h>
 #include <conio.h>
 #include <string>
@@ -9,6 +8,9 @@
 #include <vector>
 #include <Windows.h>
 #include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 
 using namespace std;
@@ -74,6 +76,8 @@ const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)
 
 //******************** ЗДАНИЕ **********************
 
+#ifndef MATERIAL_STRUCT
+#define MATERIAL_STRUCT
 struct MATERIAL
 {
 	int id;				//id материала
@@ -84,6 +88,7 @@ struct MATERIAL
 	double height;		//высота
 	double count;		//к-во
 	int unit;			//ед. измерения
+
 	double price;		//цена за единицу
 };
 //единици измерения
@@ -93,3 +98,4 @@ enum Units
 	KILOS,		//килограмм
 	PIECES,		//штук
 };
+#endif
