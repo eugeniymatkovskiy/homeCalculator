@@ -3,48 +3,42 @@
 class Roof
 {
 public:
-	Roof();
+	Roof(double houseLength, double houseWidth, int roofType, double reftersPrice, double slatePrice, double tilingPrice, double ruberoidPrice);
 	~Roof();
 
 	void PifagorTheorem();
 	void roofSize();
 	void roofPrice();
-	void getPrices();
-	void getSizes();
+	void getReftersAmount(); //стропіли
+	void getSlateAmount(); //шифер
+	void getTilingAmount(); //металочерепиця
+	void getRuberoidAmount(); //рубероїд;
+	
 
 protected:
 	ifstream Read;
 	ofstream Write;
-	//довжина будинку
-	double houseLength = 10.5;
-	//ширина будинку
-	double houseWidth = 12.5;
-	//довжина криші
-	double roofLength;
-	//висота фронтону
-	double frontonHeight;
-	// довжина стропіли
-	double reftersLength;
-	// відстань між стропілами
-	double reftersWidth;
-	// ширина шифера
-	double slateWidth;
-	// довжина шефера
-	double slateLength;
-	//ширина накладання шифера
-	double slateLayingOn;
-	//ширина металочерепиці
-	double tilingWidth;
-	//довжина металочерепиці
-	double tilingLength;
-	//ширина накладання металочерепиці
-	double tilingLayingOn;
+	
+	double houseLength;//довжина будинку
+	double houseWidth;//ширина будинку
+	double roofLength;//довжина криші
+	double squareRoof;//площа криші
+	double frontonHeight;//висота фронтону
+	double reftersLength;// довжина стропіли
+	double reftersWidth;// відстань між стропілами
+	double slateWidth;// ширина шифера
+	double slateLength;// довжина шефера
+	double slateLayingOn;//ширина накладання шифера
+	double tilingWidth;//ширина металочерепиці
+	double tilingLength;//довжина металочерепиці
+	double tilingLayingOn;//ширина накладання металочерепиці
 	int roofType;
-	int reftersAmount = 0;
-	int slateAmount = 0;
-	int tilingAmount = 0;
+	int reftersAmount;
+	int slateAmount;
+	int tilingAmount;
 	double reftersPrice;
 	double slatePrice;
 	double tilingPrice;
+	double ruberoidPrice;
 };
 
