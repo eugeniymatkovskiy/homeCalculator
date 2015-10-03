@@ -12,7 +12,7 @@ class Building
 		
 
 	protected:
-		Foundation* foundation;				//фундамент
+		//Foundation* foundation;				//фундамент
 		//Floor* floor;						//этаж(и)
 		//Roof* roof;						//крыша
 
@@ -32,9 +32,11 @@ class Building
 		int getfloorCount();								//получить высоту здания (м)
 		void createFoundation(int, bool);					//создать фундамент
 		virtual void calculate() = 0;						//расчитать все материалы 
-		virtual void addMaterials(vector<MATERIAL>&) = 0;	//добавить материалы в список
+		virtual void addMaterials(vector<MATERIAL*>*) = 0;	//добавить материалы в список
 		//virtual void createFloor();						//создать этаж
 		//virtual void createRoof();						//создать крышу
+
+		Foundation* foundation;				//фундамент
 		virtual ~Building();
 };
 

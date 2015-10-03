@@ -13,7 +13,7 @@ class Office:
 		~Office();
 
 		void calculate();						//расчитать все материалы 
-		void addMaterials(vector<MATERIAL>&);	//добавить материалы в список
+		void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список
 };
 //расчитать все материалы 
 void Office::calculate()
@@ -21,7 +21,7 @@ void Office::calculate()
 	this->foundation->calculate();
 }
 //добавить материалы в список
-void Office::addMaterials(vector<MATERIAL>& materials)
+void Office::addMaterials(vector<MATERIAL*>* materials)
 {
 	this->foundation->addMaterials(materials);
 }

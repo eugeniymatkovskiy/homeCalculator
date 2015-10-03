@@ -24,20 +24,32 @@
 using namespace std;
 
 int main()
-{
-	vector<MATERIAL> materials;
+{	
+	vector<MATERIAL*> materials;
+	//materials = new vector<MATERIAL*>;
+
+	MATERIAL* m1 = new MATERIAL;
+	m1->id = 1000;
+	materials.push_back(m1);
+	MATERIAL* m2 = new MATERIAL;
+	m2->id = 1001;
+	materials.push_back(m2);
+	MATERIAL* m3 = new MATERIAL;
+	m3->id = 1002;
+	materials.push_back(m3);
 
 	Office *office = new Office(20.0, 10.0, 2);
 	cout << office->getfloorCount() << endl;
 
 	office->createFoundation(FOUND_STONE, 1);
 	office->calculate();
-	office->addMaterials(materials);
+	office->addMaterials(&materials);
+	office->foundation->addMaterials(&materials);
 
 	Building *b1 = new Office(20.0, 20.0, 2);
 	b1->createFoundation(FOUND_BLOCK, 1);
 	b1->calculate();
-	b1->addMaterials(materials);
+	b1->addMaterials(&materials);
 
 	//Building *building = new Building(20.0, 10.0, 2);
 	//Building *building2 = new Building(20.0, 10.0, 2);
@@ -52,11 +64,12 @@ int main()
 	//building2->calculate();
 	//building2->addMaterials(materials);
 
-	cout << materials[0].type << endl;
-	cout << materials[1].type << endl;
-	cout << materials[2].type << endl;
+	cout << materials[0]->id << " " << materials[0]->count << endl;
+	cout << materials[1]->id << " " << materials[1]->count << endl;
+	cout << materials[2]->id << " " << materials[2]->count << endl;
 	
 	delete office;
+	delete b1;
 
 	system("pause");
 }
