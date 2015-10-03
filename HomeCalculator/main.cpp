@@ -107,8 +107,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	delete mat_panel_box;
 	delete main_window;
 	
-	Roof newRoof;
-	newRoof.getPrices();
-
+	
 	return (int)msg.wParam;
 }
