@@ -1,200 +1,118 @@
 #include "stdafx.h"
 #include "Roof.h"
 
-Roof::Roof() {
-	//довжина будинку
-	houseLength = 10.50;
-	//ширина будинку
-	houseWidth = 8.50;
-	//висота фронтону
-	frontonHeight = 4;
-	// довжина стропіли
-	reftersLength = 4;
-	// відстань між стропілами
-	reftersWidth = 0.50;
-	// ширина шифера
-	slateWidth = 0.98;
-	// довжина шифера
-	slateLength = 1.75;
-	//ширина накладання шифера
-	slateLayingOn = 0.20;
-	//ширина металочерепиці
-	tilingWidth = 1.50;
-	//довжина металочерепиці
-	tilingLength = 4.50;
-	//ширина накладання металочерепиці
-	tilingLayingOn = 0.30;
-	reftersPrice = 30; //за метр квадратний стропіл
-	slatePrice = 75;
-	tilingPrice = 125;
-	ruberoidPrice = 35;
+Roof::Roof(double houseLength, double houseWidth, int roofType, double reftersPrice, double slatePrice, double tilingPrice, double ruberoidPrice) {
+	this->houseLength = houseLength;
+	this->houseWidth = houseWidth;
+	this->roofType = roofType;
+	this->frontonHeight = 4;//висота фронтону
+	this->reftersLength = 4;// довжина стропіли
+	this->reftersWidth = 0.50;// відстань між стропілами
+	this->slateWidth = 0.98;// ширина шифера
+	this->slateLength = 1.75;// довжина шифера
+	this->slateLayingOn = 0.20;//ширина накладання шифера
+	this->tilingWidth = 1.50;//ширина металочерепиці
+	this->tilingLength = 4.50;//довжина металочерепиці
+	this->tilingLayingOn = 0.30;//ширина накладання металочерепиці
+
+	//отримання цін на матеріали
+	this->reftersPrice = reftersPrice; //за метр квадратний стропіл
+	this->slatePrice = slatePrice;
+	this->tilingPrice = tilingPrice;
+	this->ruberoidPrice = ruberoidPrice;
 }
 
 Roof::~Roof() {
 }
 
-void Roof::getSizes() {
-	string str, size;
-	int found;
-	Read.open("roofMaterialsSizes.txt");
-	if (!Read.is_open()) {
-		cout << "Could not open file!!!" << endl;
-	}
-	else {
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			frontonHeight = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			reftersLength = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			reftersWidth = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			slateWidth = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			slateLength = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			slateLayingOn = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			tilingWidth = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			tilingLength = stod(size);
-
-			getline(Read, str);
-			found = str.find_first_of(" ");
-			size = str.substr(found + 1);
-			tilingLayingOn = stod(size);
-		}
-	Read.close();
-}
-
-void Roof::getPrices() {
-	string str, price;
-	int found;
-	Read.open("roofMaterialsPrices.txt");
-	if (!Read.is_open()) {
-		cout << "Could not open file!!!" << endl;
-	}
-	else {
-		getline(Read, str);
-		found = str.find_first_of(" ");
-		price = str.substr(found + 1);
-		reftersPrice = stod(price);
-
-		getline(Read, str);
-		found = str.find_first_of(" ");
-		price = str.substr(found + 1);
-		slatePrice = stod(price);
-
-		getline(Read, str);
-		found = str.find_first_of(" ");
-		price = str.substr(found + 1);
-		tilingPrice = stod(price);
-	}
-	Read.close();
-}
-
 void Roof::PifagorTheorem() {
-	//this->getSizes();
-	roofLength = sqrt((houseWidth/2) * (houseWidth/2) + frontonHeight * frontonHeight); //довжина криші
+	this->roofLength = sqrt((this->houseWidth / 2) * (this->houseWidth / 2) + this->frontonHeight * this->frontonHeight); //довжина криші
 }
 
 void Roof::roofSize() {
-	//this->getSizes();
-
-	// визначення довжини криші
-	this->PifagorTheorem();
+	this->PifagorTheorem();// визначення довжини криші
 
 	//визначення кількості стропіл з двох сторін будинку
-	double reftersAmountHeight = ceil(roofLength / reftersLength); //кількістьстропіл по висоті
-	reftersAmount = ((ceil(houseLength / reftersWidth) + 1) * reftersAmountHeight) * 2; //загальна кількість стропіл з двох сторін будинку
+	double reftersAmountHeight = ceil(this->roofLength / this->reftersLength); //кількістьстропіл по висоті
+	this->reftersAmount = ((ceil(this->houseLength / this->reftersWidth) + 1) * reftersAmountHeight) * 2; //загальна кількість стропіл з двох сторін будинку
 
 	cout << "Enter the type of root: 0 for slate, 1 for tiling" << endl;
 	cin >> roofType;
 
 	//визначення кількості шиферу
-	if (roofType == 0) {
+	if (this->roofType == 0) {
 		double slateAmountHeight = 1; //кількість необхідного шиферу по висоті
-		double tmp = slateLength - slateLayingOn;
+		double tmp = this->slateLength - this->slateLayingOn;
 		while (true) {
-			if (slateLength >= roofLength) {
+			if (this->slateLength >= this->roofLength) {
 				break;
 			}
 			else {
 				slateAmountHeight++;
-				slateLength += tmp;
+				this->slateLength += tmp;
 			}
 		}
-
-		slateAmount = (int) (ceil(houseLength / slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
-		cout << "General slate amount: " << slateAmount << endl;
-		cout << "General refters amount: " << reftersAmount << endl;
+		this->slateAmount = (int)(ceil(this->houseLength / this->slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
+		cout << "General slate amount: " << this->slateAmount << endl;
+		cout << "General refters amount: " << this->reftersAmount << endl;
 	}
 	//визначення кількості металочерепиці
-	else if (roofType == 1) {
+	else if (this->roofType == 1) {
 		double tilingAmountHeight = 1; //кількість необхідної металочерепиці по висоті
-		double tmp = tilingLength - tilingLayingOn;
+		double tmp = this->tilingLength - this->tilingLayingOn;
 		while (true) {
-			if (tilingLength >= roofLength) {
+			if (this->tilingLength >= this->roofLength) {
 				break;
 			}
 			else {
 				tilingAmountHeight++;
-				tilingLength += tmp;
+				this->tilingLength += tmp;
 			}
 		}
-
-		tilingAmount = (ceil(houseLength / tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
-		cout << "General tiling amount: " << tilingAmount << endl;
-		cout << "General refters amount: " << reftersAmount << endl;
+		this->tilingAmount = (ceil(this->houseLength / this->tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
+		cout << "General tiling amount: " << this->tilingAmount << endl;
+		cout << "General refters amount: " << this->reftersAmount << endl;
 	}
-	else if (roofType == 2) {
-		squareRoof = houseLength * houseWidth;
-		cout << "General amount square meters of ruberoid: " << squareRoof << endl;
+	else if (this->roofType == 2) {
+		this->squareRoof = this->houseLength * this->houseWidth;
+		cout << "General amount square meters of ruberoid: " << this->squareRoof << endl;
 	}	
 }
 
 void Roof::roofPrice() {
-	//this->getSizes();
-	//this->getPrices();
 	this->roofSize();
 
 	double reftersCost, slateCost, tilingCost, ruberoidCost, generalRoofCost;
 	//вартість стропіл
-	reftersCost = reftersAmount * reftersLength * reftersPrice;
-	if (roofType == 0) {
-		slateCost = slateAmount * slatePrice;
+	reftersCost = this->reftersAmount * this->reftersLength * this->reftersPrice;
+	if (this->roofType == 0) {
+		slateCost = this->slateAmount * this->slatePrice;
 		generalRoofCost = reftersCost + slateCost;
 	}
-	else if (roofType == 1) {
-		tilingCost = tilingAmount * tilingPrice;
+	else if (this->roofType == 1) {
+		tilingCost = this->tilingAmount * this->tilingPrice;
 		generalRoofCost = reftersCost + tilingCost;
 	}
-	else if (roofType == 2) {
-		ruberoidCost = squareRoof * ruberoidPrice;
+	else if (this->roofType == 2) {
+		ruberoidCost = this->squareRoof * this->ruberoidPrice;
 		generalRoofCost = ruberoidCost;
 	}
 
 	cout << "General cost of the roof is: " << generalRoofCost << endl;
+}
+
+void Roof::getReftersAmount(){
+	this->reftersAmount;
+}
+
+void Roof::getSlateAmount(){
+	this->slateAmount;
+}
+
+void Roof::getTilingAmount(){
+	this->tilingAmount;
+}
+
+void Roof::getRuberoidAmount(){
+	this->squareRoof;
 }
