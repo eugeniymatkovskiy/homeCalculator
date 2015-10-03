@@ -8,7 +8,7 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MainWindow.h"
 #include "GuiControl.h"
 #include "OpenGLViewPort.h"
@@ -17,6 +17,8 @@
 #include "GuiComboBox.h"
 #include "Roof.h"
 #include "HomeCalculator.h"
+
+#include "Parser.h"
 
 
 using namespace std;

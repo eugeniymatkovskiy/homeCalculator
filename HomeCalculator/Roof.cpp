@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Roof.h"
 
 Roof::Roof() {
