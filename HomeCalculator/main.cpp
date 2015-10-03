@@ -9,12 +9,16 @@
 #include <memory.h>
 #include <tchar.h>
 #include "stdafx.h"
+
 #include "MainWindow.h"
-#include "GuiControl.h"
-#include "OpenGLViewPort.h"
-#include "GuiCheckBox.h"
-#include "GuiEditNum.h"
-#include "GuiComboBox.h"
+
+//#include "GuiControl.h"
+//#include "OpenGLViewPort.h"
+//#include "GuiCheckBox.h"
+//#include "GuiEditNum.h"
+//#include "GuiComboBox.h"
+#include "User_Interface.h"
+
 #include "Roof.h"
 #include "HomeCalculator.h"
 
