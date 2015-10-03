@@ -81,6 +81,7 @@
     <ClInclude Include="GuiEditNum.h" />
     <ClInclude Include="HomeCalculator.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Office.h" />
     <ClInclude Include="OpenGLViewPort.h" />
     <ClInclude Include="Roof.h" />
     <ClInclude Include="stdafx.h" />

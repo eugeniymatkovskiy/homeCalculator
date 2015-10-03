@@ -9,11 +9,13 @@ class Building
 		double length;						//длина (м)
 		double width;						//ширина (м)
 		int floorCount;						//к-во этажей
+		
+
+	protected:
 		Foundation* foundation;				//фундамент
 		//Floor* floor;						//этаж(и)
 		//Roof* roof;						//крыша
 
-	protected:
 		//void calcFoundationMaterials();		//рассчитать материалы для фундамента
 		//void calcFloorsMaterials();			//рассчитать материалы для этажа(ей)
 		//void calcRoofMaterials();			//рассчитать материалы для криши
@@ -22,20 +24,19 @@ class Building
 		Building();
 		Building(double, double, int);
 		Building(const Building&);
-		void setLength(double);						//установить длину здания (м)
-		void setWidth(double);						//установить ширину здания (м)
-		void setfloorCount(int);					//установить к-во этажей (м)
-		double getLength();							//получить длину здания (м)
-		double getWidth();							//получить ширину здания (м)
-		int getfloorCount();						//получить высоту здания (м)
-		void createFoundation(int, bool);			//создать фундамент
-		void calculate();							//расчитать все материалы 
-		void addMaterials(vector<MATERIAL>&);		//добавить материалы в список
-		//void createFloor();						//создать этаж
-		//void createRoof();						//создать крышу
-		~Building();
+		void setLength(double);								//установить длину здания (м)
+		void setWidth(double);								//установить ширину здания (м)
+		void setfloorCount(int);							//установить к-во этажей (м)
+		double getLength();									//получить длину здания (м)
+		double getWidth();									//получить ширину здания (м)
+		int getfloorCount();								//получить высоту здания (м)
+		void createFoundation(int, bool);					//создать фундамент
+		virtual void calculate() = 0;						//расчитать все материалы 
+		virtual void addMaterials(vector<MATERIAL>&) = 0;	//добавить материалы в список
+		//virtual void createFloor();						//создать этаж
+		//virtual void createRoof();						//создать крышу
+		virtual ~Building();
 };
-
 
 
 Building::Building()
@@ -50,7 +51,9 @@ Building::Building(double length, double width, int floorCount)
 }
 Building::Building(const Building &obj)
 {
-
+	this->length = obj.length;
+	this->width = obj.width;
+	this->floorCount = obj.floorCount;
 }
 //создание фундамента
 void Building::createFoundation(int material, bool basement)
@@ -60,16 +63,6 @@ void Building::createFoundation(int material, bool basement)
 										this->getfloorCount(), 
 										material, 
 										basement);
-}
-//расчитать все материалы 
-void Building::calculate()
-{
-	this->foundation->calculate();
-}
-//добавить материалы в список
-void Building::addMaterials(vector<MATERIAL>& materials)
-{
-	this->foundation->addMaterials(materials);
 }
 //установить длину здания (м)
 void Building::setLength(double length)

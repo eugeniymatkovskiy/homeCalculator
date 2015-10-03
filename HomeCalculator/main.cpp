@@ -19,30 +19,45 @@
 #include "HomeCalculator.h"
 #include "Foundation.h"
 #include "Building.h"
-
+#include "Office.h"
 
 using namespace std;
 
 int main()
 {
 	vector<MATERIAL> materials;
-	Building *building = new Building(20.0, 10.0, 2);
-	Building *building2 = new Building(20.0, 10.0, 2);
-		
-	cout << building->getfloorCount() << endl;
 
-	building->createFoundation(FOUND_STONE, 1);
-	building->calculate();
-	building->addMaterials(materials);
+	Office *office = new Office(20.0, 10.0, 2);
+	cout << office->getfloorCount() << endl;
 
-	building2->createFoundation(FOUND_BLOCK, 1);
-	building2->calculate();
-	building2->addMaterials(materials);
+	office->createFoundation(FOUND_STONE, 1);
+	office->calculate();
+	office->addMaterials(materials);
+
+	Building *b1 = new Office(20.0, 20.0, 2);
+	b1->createFoundation(FOUND_BLOCK, 1);
+	b1->calculate();
+	b1->addMaterials(materials);
+
+	//Building *building = new Building(20.0, 10.0, 2);
+	//Building *building2 = new Building(20.0, 10.0, 2);
+	//	
+	//cout << building->getfloorCount() << endl;
+
+	//building->createFoundation(FOUND_STONE, 1);
+	//building->calculate();
+	//building->addMaterials(materials);
+
+	//building2->createFoundation(FOUND_BLOCK, 1);
+	//building2->calculate();
+	//building2->addMaterials(materials);
 
 	cout << materials[0].type << endl;
 	cout << materials[1].type << endl;
 	cout << materials[2].type << endl;
 	
+	delete office;
+
 	system("pause");
 }
 
