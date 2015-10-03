@@ -10,6 +10,7 @@
 #include <Windows.h>
 #include <math.h>
 
+
 using namespace std;
 
 //******************** ФУНДАМЕНТ **********************
@@ -46,6 +47,9 @@ const double FOUND_THICK_2FLOOR = 0.3;			//толщина фундамента для 2 этажей (м)
 const double FOUND_THICK_3FLOOR = 0.4;			//толщина фундамента для 3 этажей (м)
 const double FOUND_THICK_4FLOOR = 0.5;			//толщина фундамента для 4 этажей (м)
 const double FOUND_THICK_5FLOOR = 0.6;			//толщина фундамента для 5 этажей (м)
+const int FOUND_CONCRETE_ID = 1000;
+const int FOUND_STONE_ID = 1001;
+const int FOUND_BLOCK_ID = 1002;
 
 //параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)
@@ -70,12 +74,15 @@ const double FOUND_CONCRETE_IN_BLOCK = 0.10;	//при использовании блоков (%)
 
 struct MATERIAL
 {
+	int id;				//id материала
+	int groupId;		//id групы материалов
 	string type;		//тип
 	double length;		//длина
 	double width;		//ширина
 	double height;		//высота
 	double count;		//к-во
 	int unit;			//ед. измерения
+	double price;		//цена за единицу
 };
 //единици измерения
 enum Units
