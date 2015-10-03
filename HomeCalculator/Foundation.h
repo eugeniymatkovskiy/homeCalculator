@@ -4,64 +4,64 @@
 
 class Foundation
 {
-	private:
-		double length;				//длина (м)
-		double width;				//ширина (м)
-		double height;				//высота (м)
-		double thickness;			//толщина (м)
-		int floorCount;				//к-во этажей
-		bool basement;				//наличие подвала
-		int material;				//материал
-		double area;				//площадь (м2)
-		double volume;				//обьем (м3) 
-		//если фундамент из бетона
-		double concreteWeight;		//вес (кг)
-		//если фундамент из камня
-		double stoneWeight;			//вес (кг)
-		//если фундамент из блоков
-		BLOCK block;				//данные выбраного фундаментного блока
-		int blocksCount;			//к-во блоков в фундаменте
+private:
+	double length;				//длина (м)
+	double width;				//ширина (м)
+	double height;				//высота (м)
+	double thickness;			//толщина (м)
+	int floorCount;				//к-во этажей
+	bool basement;				//наличие подвала
+	int material;				//материал
+	double area;				//площадь (м2)
+	double volume;				//обьем (м3) 
+	//если фундамент из бетона
+	double concreteWeight;		//вес (кг)
+	//если фундамент из камня
+	double stoneWeight;			//вес (кг)
+	//если фундамент из блоков
+	BLOCK block;				//данные выбраного фундаментного блока
+	int blocksCount;			//к-во блоков в фундаменте
 
-	protected:
-		void init();					//инициализация свойств
-		void selectBlockType();			//выбрать блок для фундамента
-		void calcHeight();				//рассчитать высоту фундамента
-		void calcThickness();			//рассчитать толщину фундамента
-		void calcArea();				//рассчитать площадь фундамента
-		void calcVolume();				//рассчитать обьем фундамента
-		void calcConcreteWeight();		//рассчитать вес бетона в фундаменте
-		void calcStoneWeight();			//рассчитать вес камня в фундаменте
-		void calcBlocksCount();			//рассчитать к-во блоков фундамента
+protected:
+	void init();					//инициализация свойств
+	void selectBlockType();			//выбрать блок для фундамента
+	void calcHeight();				//рассчитать высоту фундамента
+	void calcThickness();			//рассчитать толщину фундамента
+	void calcArea();				//рассчитать площадь фундамента
+	void calcVolume();				//рассчитать обьем фундамента
+	void calcConcreteWeight();		//рассчитать вес бетона в фундаменте
+	void calcStoneWeight();			//рассчитать вес камня в фундаменте
+	void calcBlocksCount();			//рассчитать к-во блоков фундамента
 
-	public:
-		Foundation(double, double, int, int, bool);
-		Foundation(const Foundation&);
-		void setLength(double);						//установить длину фундамента (м)
-		void setWidth(double);						//установить ширину фундамента (м)
-		void setHeight(double);						//установить высоту фундамента (м)
-		void setThickness(double);					//установить толщину фундамента (м)
-		void setFloorCount(int);					//установить к-во этажей
-		void setBasement();							//установить наличие подвала
-		void resetBasement();						//установить отсутствие подвала
-		void setMaterial(int);						//установить материал фундамента (FoundMaterial)
-		double getLength();							//получить длину фундамента (м)
-		double getWidth();							//получить ширину фундамента (м)
-		double getHeight();							//получить высоту фундамента (м)
-		double getThickness();						//получить толщину фундамента (м)
-		int getFloorCount();						//получить к-во этажей
-		bool getBasement();							//получить наличие подвала
-		int getMaterial();							//получить материал фундамента (FoundMaterial)
-		double getArea();							//получить площадь фундамента (м2)
-		double getVolume();							//получить обьем фундамента (м3)
-		double getConcreteWeight();					//получить вес цемента в фундаменте (кг)
-		double getStoneWeight();					//получить вес камня в фундаменте (кг)
-		BLOCK getSelectedBlock();					//получить тип выбраного блока
-		int getBlocksCount();						//получить к-во блоков в фундаменте
-		void calculate();							//рассчитать все характеристики фундамента
-		void addMaterials(vector<MATERIAL>&);		//добавить материалы в список
-		void unitTest(double, double,
-						int, int, bool);			//отладка
-		virtual ~Foundation();
+public:
+	Foundation(double, double, int, int, bool);
+	Foundation(const Foundation&);
+	void setLength(double);						//установить длину фундамента (м)
+	void setWidth(double);						//установить ширину фундамента (м)
+	void setHeight(double);						//установить высоту фундамента (м)
+	void setThickness(double);					//установить толщину фундамента (м)
+	void setFloorCount(int);					//установить к-во этажей
+	void setBasement();							//установить наличие подвала
+	void resetBasement();						//установить отсутствие подвала
+	void setMaterial(int);						//установить материал фундамента (FoundMaterial)
+	double getLength();							//получить длину фундамента (м)
+	double getWidth();							//получить ширину фундамента (м)
+	double getHeight();							//получить высоту фундамента (м)
+	double getThickness();						//получить толщину фундамента (м)
+	int getFloorCount();						//получить к-во этажей
+	bool getBasement();							//получить наличие подвала
+	int getMaterial();							//получить материал фундамента (FoundMaterial)
+	double getArea();							//получить площадь фундамента (м2)
+	double getVolume();							//получить обьем фундамента (м3)
+	double getConcreteWeight();					//получить вес цемента в фундаменте (кг)
+	double getStoneWeight();					//получить вес камня в фундаменте (кг)
+	BLOCK getSelectedBlock();					//получить тип выбраного блока
+	int getBlocksCount();						//получить к-во блоков в фундаменте
+	void calculate();							//рассчитать все характеристики фундамента
+	void addMaterials(vector<MATERIAL*>*);		//добавить материалы в список
+	void unitTest(double, double,
+		int, int, bool);			//отладка
+	virtual ~Foundation();
 };
 
 Foundation::Foundation(double length,		//длина фундамента
@@ -424,111 +424,185 @@ void Foundation::calculate()
 
 }
 //добавить материалы в список
-void Foundation::addMaterials(vector<MATERIAL>& materials)
+void Foundation::addMaterials(vector<MATERIAL*>* materials)
 {
-	
-	MATERIAL tmpMaterial;				//временный материал для добавления текущего материала в список 
-	vector<MATERIAL>::iterator it;		//итератор переданого в метод вектора
+
+	//MATERIAL tmpMaterial;				//временный материал для добавления текущего материала в список 
+	//vector<MATERIAL>::iterator it;	//итератор переданого в метод вектора
+	vector<MATERIAL*>* tmpMaterials;	//временный указатель на вектор
 	bool mtrlAdded;						//флаг - материал добавлен
 
-//************ добавляем к-во бетона **************
-	
+	tmpMaterials = materials;
+
+	//MATERIAL* m1 = new MATERIAL();
+
+	//m1->id = FOUND_CONCRETE_ID;
+	//tmpMaterials->push_back(m1);
+
+	//m1->id = FOUND_STONE_ID;
+	//tmpMaterials->push_back(m1);
+
+	//m1->id = FOUND_BLOCK_ID;
+	//tmpMaterials->push_back(m1);
+
+
+	//************ добавляем к-во бетона **************
+
 	//проверяем наличие бетона для изготовления фундамента
 	if (this->getConcreteWeight())
 	{
-		//сбрасываем флаг
-		mtrlAdded = false;
-		
-		//заполняем параметры материала для добавления в список
-		tmpMaterial.type = MTRL_CONCRETE;
-		tmpMaterial.length = 0;
-		tmpMaterial.width = 0;
-		tmpMaterial.height = 0;
-		tmpMaterial.count = this->getConcreteWeight();
-		tmpMaterial.unit = KILOS;
-		
-		//проверяем или в списке уже есть текущий материал
-		//если есть, то добавляем к-во к нему
-		for (it = materials.begin(); it != materials.end(); it++)
+		for (int i = 0; i < tmpMaterials->size(); i++)
 		{
-			if ((*it).type == MTRL_CONCRETE && (*it).unit == KILOS)
+			if ((*tmpMaterials)[i]->id == FOUND_CONCRETE_ID)
 			{
-				(*it).count += this->getConcreteWeight();
-				mtrlAdded = true;
+				(*tmpMaterials)[i]->count = this->getConcreteWeight();
 				break;
 			}
 		}
-		//если текущего материала нет в списке - добавляем его в конец
-		if (!mtrlAdded) materials.push_back(tmpMaterial);
 	}
 
-//************ добавляем к-во камня **************
+	//************ добавляем к-во камня **************
 
 	//проверяем наличие камня для изготовления фундамента
 	if (this->getStoneWeight())
 	{
-		//сбрасываем флаг
-		mtrlAdded = false;
-
-		//заполняем параметры материала для добавления в список
-		tmpMaterial.type = MTRL_STONE;
-		tmpMaterial.length = 0;
-		tmpMaterial.width = 0;
-		tmpMaterial.height = 0;
-		tmpMaterial.count = this->getStoneWeight();
-		tmpMaterial.unit = KILOS;
-
-		//проверяем или в списке уже есть текущий материал
-		//если есть, то добавляем к-во к нему
-		for (it = materials.begin(); it != materials.end(); it++)
+		for (int j = 0; j < tmpMaterials->size(); j++)
 		{
-			if ((*it).type == MTRL_STONE && (*it).unit == KILOS)
+			if ((*tmpMaterials)[j]->id == FOUND_STONE_ID)
 			{
-				(*it).count += this->getStoneWeight();
-				mtrlAdded = true;
-				break;
-			}		
-		}
-		//если текущего материала нет в списке - добавляем его в конец
-		if (!mtrlAdded) materials.push_back(tmpMaterial);
-	}
-
-//************ добавляем к-во блоков **************
-
-	//проверяем наличие блоков для изготовления фундамента
-	if (this->getBlocksCount())
-	{
-		//сбрасываем флаг
-		mtrlAdded = false;
-
-		//заполняем параметры материала для добавления в список
-		tmpMaterial.type = this->getSelectedBlock().type;
-		tmpMaterial.length = this->getSelectedBlock().length;
-		tmpMaterial.width = this->getSelectedBlock().width;
-		tmpMaterial.height = this->getSelectedBlock().height;
-		tmpMaterial.count = this->getBlocksCount();
-		tmpMaterial.unit = PIECES;
-
-		//проверяем или в списке уже есть текущий материал
-		//если есть, то добавляем к-во к нему
-		for (it = materials.begin(); it != materials.end(); it++)
-		{
-			if ((*it).type == this->getSelectedBlock().type && (*it).unit == PIECES)
-			{
-				(*it).count += this->getBlocksCount();
-				mtrlAdded = true;
+				(*tmpMaterials)[j]->count = this->getStoneWeight();
 				break;
 			}
 		}
-		//если текущего материала нет в списке - добавляем его в конец
-		if (!mtrlAdded) materials.push_back(tmpMaterial);
 	}
+
+	//************ добавляем к-во блоков **************
+
+	//проверяем наличие камня для изготовления фундамента
+	if (this->getBlocksCount())
+	{
+		for (int k = 0; k < tmpMaterials->size(); k++)
+		{
+			if ((*tmpMaterials)[k]->id == FOUND_BLOCK_ID)
+			{
+				(*tmpMaterials)[k]->count = this->getBlocksCount();
+				break;
+			}
+		}
+	}
+
+	materials = tmpMaterials;
+
+	//delete tmpMaterials;
+
+	////проверяем наличие бетона для изготовления фундамента
+	//if (this->getConcreteWeight())
+	//{
+	//	//сбрасываем флаг
+	//	mtrlAdded = false;
+
+
+	//	tmpMaterial = new MATERIAL;
+	//	//заполняем параметры материала для добавления в список
+	//	tmpMaterial.type = MTRL_CONCRETE;
+	//	tmpMaterial.length = 0;
+	//	tmpMaterial.width = 0;
+	//	tmpMaterial.height = 0;
+	//	tmpMaterial.count = this->getConcreteWeight();
+	//	tmpMaterial.unit = KILOS;
+	//	
+	//	//проверяем или в списке уже есть текущий материал
+	//	//если есть, то добавляем к-во к нему
+	//	for (it = materials.begin(); it != materials.end(); it++)
+	//	{
+	//		if ((*it).type == MTRL_CONCRETE && (*it).unit == KILOS)
+	//		{
+	//			(*it).count += this->getConcreteWeight();
+	//			mtrlAdded = true;
+	//			break;
+	//		}
+	//	}
+	//	//если текущего материала нет в списке - добавляем его в конец
+	//	if (!mtrlAdded) materials.push_back(tmpMaterial);
+	//}
+
+	//************ добавляем к-во камня **************
+
+	//for (int i = 0; i < tmpMaterials->size(); i++)
+	//{
+	//	if ((*tmpMaterials)[i]->id == FOUND_STONE_ID)
+	//	{
+	//		(*tmpMaterials)[i]->count = this->getConcreteWeight();
+	//		break;
+	//	}
+	//}
+
+	//	//проверяем наличие камня для изготовления фундамента
+	//	if (this->getStoneWeight())
+	//	{
+	//		//сбрасываем флаг
+	//		mtrlAdded = false;
+	//
+	//		//заполняем параметры материала для добавления в список
+	//		tmpMaterial.type = MTRL_STONE;
+	//		tmpMaterial.length = 0;
+	//		tmpMaterial.width = 0;
+	//		tmpMaterial.height = 0;
+	//		tmpMaterial.count = this->getStoneWeight();
+	//		tmpMaterial.unit = KILOS;
+	//
+	//		//проверяем или в списке уже есть текущий материал
+	//		//если есть, то добавляем к-во к нему
+	//		for (it = materials.begin(); it != materials.end(); it++)
+	//		{
+	//			if ((*it).type == MTRL_STONE && (*it).unit == KILOS)
+	//			{
+	//				(*it).count += this->getStoneWeight();
+	//				mtrlAdded = true;
+	//				break;
+	//			}		
+	//		}
+	//		//если текущего материала нет в списке - добавляем его в конец
+	//		if (!mtrlAdded) materials.push_back(tmpMaterial);
+	//	}
+	//
+	////************ добавляем к-во блоков **************
+	//
+	//	//проверяем наличие блоков для изготовления фундамента
+	//	if (this->getBlocksCount())
+	//	{
+	//		//сбрасываем флаг
+	//		mtrlAdded = false;
+	//
+	//		//заполняем параметры материала для добавления в список
+	//		tmpMaterial.type = this->getSelectedBlock().type;
+	//		tmpMaterial.length = this->getSelectedBlock().length;
+	//		tmpMaterial.width = this->getSelectedBlock().width;
+	//		tmpMaterial.height = this->getSelectedBlock().height;
+	//		tmpMaterial.count = this->getBlocksCount();
+	//		tmpMaterial.unit = PIECES;
+	//
+	//		//проверяем или в списке уже есть текущий материал
+	//		//если есть, то добавляем к-во к нему
+	//		for (it = materials.begin(); it != materials.end(); it++)
+	//		{
+	//			if ((*it).type == this->getSelectedBlock().type && (*it).unit == PIECES)
+	//			{
+	//				(*it).count += this->getBlocksCount();
+	//				mtrlAdded = true;
+	//				break;
+	//			}
+	//		}
+	//		//если текущего материала нет в списке - добавляем его в конец
+	//		if (!mtrlAdded) materials.push_back(tmpMaterial);
+	//	}
+
 }
 void Foundation::unitTest(double length,		//длина фундамента
-							double width,		//ширина фундамента
-							int floorCount,		//к-во этажей над фундаментом
-							int material,		//материал фундамента
-							bool basement)		//наличие подвала
+	double width,		//ширина фундамента
+	int floorCount,		//к-во этажей над фундаментом
+	int material,		//материал фундамента
+	bool basement)		//наличие подвала
 {
 	this->init();
 	this->length = length;
@@ -554,18 +628,18 @@ void Foundation::unitTest(double length,		//длина фундамента
 
 	switch (this->getMaterial())
 	{
-		case FOUND_CONCRETE:
-			cout << "материал: Бетон" << endl;
-			break;
-		case FOUND_STONE:
-			cout << "материал: Камень" << endl;
-			break;
-		case FOUND_BLOCK:
-			cout << "материал: Блок" << endl;
-			break;
-		default:
-			cout << "материал: не выбран" << endl;
-			break;
+	case FOUND_CONCRETE:
+		cout << "материал: Бетон" << endl;
+		break;
+	case FOUND_STONE:
+		cout << "материал: Камень" << endl;
+		break;
+	case FOUND_BLOCK:
+		cout << "материал: Блок" << endl;
+		break;
+	default:
+		cout << "материал: не выбран" << endl;
+		break;
 	}
 	cout << "площадь: " << this->getArea() << " м2" << endl;
 	cout << "обьем: " << this->getVolume() << " м3" << endl;
