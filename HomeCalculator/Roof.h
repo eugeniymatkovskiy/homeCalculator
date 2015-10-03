@@ -16,9 +16,9 @@ protected:
 	ifstream Read;
 	ofstream Write;
 	//довжина будинку
-	double houseLength = 10.5;
+	double houseLength;
 	//ширина будинку
-	double houseWidth = 12.5;
+	double houseWidth;
 	//довжина криші
 	double roofLength;
 	//площа криші
@@ -42,9 +42,9 @@ protected:
 	//ширина накладання металочерепиці
 	double tilingLayingOn;
 	int roofType;
-	int reftersAmount = 0;
-	int slateAmount = 0;
-	int tilingAmount = 0;
+	int reftersAmount;
+	int slateAmount;
+	int tilingAmount;
 	double reftersPrice;
 	double slatePrice;
 	double tilingPrice;

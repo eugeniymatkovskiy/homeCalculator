@@ -2,6 +2,32 @@
 #include "Roof.h"
 
 Roof::Roof() {
+	//довжина будинку
+	houseLength = 10.50;
+	//ширина будинку
+	houseWidth = 8.50;
+	//висота фронтону
+	frontonHeight = 4;
+	// довжина стропіли
+	reftersLength = 4;
+	// відстань між стропілами
+	reftersWidth = 0.50;
+	// ширина шифера
+	slateWidth = 0.98;
+	// довжина шифера
+	slateLength = 1.75;
+	//ширина накладання шифера
+	slateLayingOn = 0.20;
+	//ширина металочерепиці
+	tilingWidth = 1.50;
+	//довжина металочерепиці
+	tilingLength = 4.50;
+	//ширина накладання металочерепиці
+	tilingLayingOn = 0.30;
+	reftersPrice = 30; //за метр квадратний стропіл
+	slatePrice = 75;
+	tilingPrice = 125;
+	ruberoidPrice = 35;
 }
 
 Roof::~Roof() {
@@ -90,12 +116,12 @@ void Roof::getPrices() {
 }
 
 void Roof::PifagorTheorem() {
-	this->getSizes();
+	//this->getSizes();
 	roofLength = sqrt((houseWidth/2) * (houseWidth/2) + frontonHeight * frontonHeight); //довжина криші
 }
 
 void Roof::roofSize() {
-	this->getSizes();
+	//this->getSizes();
 
 	// визначення довжини криші
 	this->PifagorTheorem();
@@ -139,20 +165,23 @@ void Roof::roofSize() {
 
 		tilingAmount = (ceil(houseLength / tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
 	}
-	else if (roofType == 3) {
+	else if (roofType == 2) {
 		squareRoof = houseLength * houseWidth;
 	}
+
+	cout << "General slate amount: " << slateAmount << endl;
+	cout << "General tiling amount: " << tilingAmount << endl;
+	cout << "General amount square meters of ruberoid: " << squareRoof << endl;
 }
 
 void Roof::roofPrice() {
-	this->getSizes();
-	this->getPrices();
+	//this->getSizes();
+	//this->getPrices();
 	this->roofSize();
 
 	double reftersCost, slateCost, tilingCost, ruberoidCost, generalRoofCost;
 	//вартість стропіл
 	reftersCost = reftersAmount * reftersLength * reftersPrice;
-	//вартість шиферу або металочерепиці
 	if (roofType == 0) {
 		slateCost = slateAmount * slatePrice;
 		generalRoofCost = reftersCost + slateCost;
@@ -161,8 +190,9 @@ void Roof::roofPrice() {
 		tilingCost = tilingAmount * tilingPrice;
 		generalRoofCost = reftersCost + tilingCost;
 	}
-	else if (roofType == 3) {
+	else if (roofType == 2) {
 		ruberoidCost = squareRoof * ruberoidPrice;
+		generalRoofCost = ruberoidCost;
 	}
 
 	cout << "General cost of the roof is: " << generalRoofCost << endl;
