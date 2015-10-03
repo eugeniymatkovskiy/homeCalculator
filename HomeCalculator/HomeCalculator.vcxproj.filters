@@ -74,6 +74,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Office.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Home.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Garage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage.h">
     <ClInclude Include="Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
