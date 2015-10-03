@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Roof.h"
 
 Roof::Roof(double houseLength, double houseWidth, int roofType, double reftersPrice, double slatePrice, double tilingPrice, double ruberoidPrice) {
