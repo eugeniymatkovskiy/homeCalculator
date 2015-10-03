@@ -90,15 +90,15 @@ void Roof::getPrices() {
 }
 
 void Roof::PifagorTheorem() {
-	getSizes();
+	this->getSizes();
 	roofLength = sqrt((houseWidth/2) * (houseWidth/2) + frontonHeight * frontonHeight); //довжина криші
 }
 
 void Roof::roofSize() {
-	getSizes();
+	this->getSizes();
 
 	// визначення довжини криші
-	PifagorTheorem();
+	this->PifagorTheorem();
 
 	//визначення кількості стропіл з двох сторін будинку
 	double reftersAmountHeight = ceil(roofLength / reftersLength); //кількістьстропіл по висоті
@@ -126,26 +126,30 @@ void Roof::roofSize() {
 	//визначення кількості металочерепиці
 	else if (roofType == 1) {
 		double tilingAmountHeight = 1; //кількість необхідної металочерепиці по висоті
+		double tmp = tilingLength - tilingLayingOn;
 		while (true) {
 			if (tilingLength >= roofLength) {
 				break;
 			}
 			else {
 				tilingAmountHeight++;
-				tilingLength += (tilingLength - tilingLayingOn);
+				tilingLength += tmp;
 			}
 		}
 
 		tilingAmount = (ceil(houseLength / tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
 	}
+	else if (roofType == 3) {
+		squareRoof = houseLength * houseWidth;
+	}
 }
 
 void Roof::roofPrice() {
-	getSizes();
-	getPrices();
-	roofSize();
+	this->getSizes();
+	this->getPrices();
+	this->roofSize();
 
-	double reftersCost, slateCost, tilingCost, generalRoofCost;
+	double reftersCost, slateCost, tilingCost, ruberoidCost, generalRoofCost;
 	//вартість стропіл
 	reftersCost = reftersAmount * reftersLength * reftersPrice;
 	//вартість шиферу або металочерепиці
@@ -156,6 +160,9 @@ void Roof::roofPrice() {
 	else if (roofType == 1) {
 		tilingCost = tilingAmount * tilingPrice;
 		generalRoofCost = reftersCost + tilingCost;
+	}
+	else if (roofType == 3) {
+		ruberoidCost = squareRoof * ruberoidPrice;
 	}
 
 	cout << "General cost of the roof is: " << generalRoofCost << endl;

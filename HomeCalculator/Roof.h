@@ -21,6 +21,8 @@ protected:
 	double houseWidth = 12.5;
 	//довжина криші
 	double roofLength;
+	//площа криші
+	double squareRoof;
 	//висота фронтону
 	double frontonHeight;
 	// довжина стропіли
@@ -46,5 +48,6 @@ protected:
 	double reftersPrice;
 	double slatePrice;
 	double tilingPrice;
+	double ruberoidPrice;
 };
 
