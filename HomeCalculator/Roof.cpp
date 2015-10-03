@@ -148,6 +148,8 @@ void Roof::roofSize() {
 		}
 
 		slateAmount = (int) (ceil(houseLength / slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
+		cout << "General slate amount: " << slateAmount << endl;
+		cout << "General refters amount: " << reftersAmount << endl;
 	}
 	//визначення кількості металочерепиці
 	else if (roofType == 1) {
@@ -164,14 +166,13 @@ void Roof::roofSize() {
 		}
 
 		tilingAmount = (ceil(houseLength / tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
+		cout << "General tiling amount: " << tilingAmount << endl;
+		cout << "General refters amount: " << reftersAmount << endl;
 	}
 	else if (roofType == 2) {
 		squareRoof = houseLength * houseWidth;
-	}
-
-	cout << "General slate amount: " << slateAmount << endl;
-	cout << "General tiling amount: " << tilingAmount << endl;
-	cout << "General amount square meters of ruberoid: " << squareRoof << endl;
+		cout << "General amount square meters of ruberoid: " << squareRoof << endl;
+	}	
 }
 
 void Roof::roofPrice() {
