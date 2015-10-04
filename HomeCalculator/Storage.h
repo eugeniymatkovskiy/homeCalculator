@@ -7,10 +7,10 @@ class Storage :
 	public Building
 {
 public:
-	Storage() :Building() {};
-	Storage(double w, double l, int f) :Building(w, l, f) {};
-	Storage(const Storage& obj) :Building(obj) {};
-	~Storage();
+	Storage() :Building() {}
+	Storage(double w, double l, int f) :Building(w, l, f) {}
+	Storage(const Storage& obj) :Building(obj) {}
+	virtual ~Storage();
 
 	void calculate();						//расчитать все материалы 
 	void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список

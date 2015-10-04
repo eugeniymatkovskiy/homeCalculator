@@ -91,6 +91,15 @@ void User_Interface::print_static_text()
 	this->textout("Материал перекрытий", 20, 290);
 }
 
+void User_Interface::add_materials(vector<MATERIAL*>* materials)
+{
+	this->materials = materials;
+	this->mat_fund_box->add_materials(materials);
+	this->mat_panel_box->add_materials(materials);
+	this->mat_roof_box->add_materials(materials);
+	this->mat_wall_box->add_materials(materials);
+}
+
 void  User_Interface::run()
 {
 	if (this->status == INPUT_DATA)
@@ -104,14 +113,31 @@ void  User_Interface::run()
 		int mat_roof = this->mat_roof_box->get_selected_index();
 		int mat_panel = this->mat_panel_box->get_selected_index();
 		bool podval = this->checkbox->isChecked();
+		Building* building=nullptr;
+		switch (type_build)
+		{
+		case 0 :
+			building = new Home((double)width,(double)length,num_floors);
+			break;
+		case 1:
+			building = new Office((double)width, (double)length, num_floors);
+			break;
+		case 2:
+			building = new Storage((double)width, (double)length, num_floors);
+			break;
+		case 3:
+			building = new Garage((double)width, (double)length, num_floors);
+			break;
+		default:
+			break;
+		}
+
+		if (building){
+			building->addMaterials(this->materials);
+			building->calculate();
+
+		}
 	}
+	
 }
 
-void User_Interface::add_materials(vector<MATERIAL*>* materials)
-{
-	this->materials = materials;
-	this->mat_fund_box->add_materials(materials);
-	this->mat_panel_box->add_materials(materials);
-	this->mat_roof_box->add_materials(materials);
-	this->mat_wall_box->add_materials(materials);
-}

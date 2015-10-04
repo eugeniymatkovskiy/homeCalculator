@@ -7,10 +7,10 @@ class Garage :
 	public Building
 {
 public:
-	Garage() :Building() {};
-	Garage(double w, double l, int f) :Building(w, l, f) {};
-	Garage(const Garage& obj) :Building(obj) {};
-	~Garage();
+	Garage() :Building() {}
+	Garage(double w, double l, int f) :Building(w, l, f) {}
+	Garage(const Garage& obj) :Building(obj) {}
+	virtual ~Garage();
 
 	void calculate();						//расчитать все материалы 
 	void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список

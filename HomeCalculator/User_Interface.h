@@ -15,6 +15,11 @@
 #include "GuiComboBox.h"
 #include "GuiListBox.h"
 #include "HomeCalculator.h"
+#include "Building.h"
+#include "Home.h"
+#include "Storage.h"
+#include "Office.h"
+#include "Garage.h"
 
 using namespace std;
 
