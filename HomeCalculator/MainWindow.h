@@ -1,6 +1,12 @@
 #pragma once
 #include <windows.h>
 #include <tchar.h>
+#include <stdio.h>
+#include "iostream"
+#include "string"
+#include "math.h"
+#include "fstream"
+#include "User_Interface.h"
 
 using namespace std;
 
@@ -13,8 +19,10 @@ private:
 	WNDCLASSEX wcex;
 	MainWindow();
 	MainWindow(const TCHAR* title, int x, int y, int width, int height);
-	
+	User_Interface* user_gui;
 public:
+	void print_static_text();
+	void add_user_gui(User_Interface* user_gui);
 	static MainWindow* base_window;
 	static MainWindow* get_main_window(const TCHAR* title, int x, int y, int width, int height)
 	{
@@ -30,23 +38,18 @@ public:
 	void loop(MSG messages);
 	void show(int cmdShow);
 	void textout(const TCHAR* string, int x, int y);
-	 static	LRESULT CALLBACK	WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+	static	LRESULT CALLBACK	WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		if (base_window)
-		{
-			base_window->textout("HomeCalculator-расчет строительной сметы", 20, 20);
-			base_window->textout("Тип здания", 20, 50);
-			base_window->textout("Число этажей", 20, 80);
-			base_window->textout("Длина здания", 20, 110);
-			base_window->textout("Ширина здания", 20, 140);
-			base_window->textout("Материал фундамента", 20, 170);
-			base_window->textout("Материал стен", 20, 230);
-			base_window->textout("Материал крыши", 20, 260);
-			base_window->textout("Материал перекрытий", 20, 290);
-		}
+		if (base_window)		base_window->user_gui->print_static_text();
+
+
 		switch (message)                  /* handle the messages */
 		{
-		
+		case WM_COMMAND:
+			switch (HIWORD(wParam))
+			{
+			case 101: base_window->user_gui->run(); break;
+			}
 		case WM_DESTROY:
 			PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
 			break;
