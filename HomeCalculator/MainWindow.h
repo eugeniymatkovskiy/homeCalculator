@@ -46,11 +46,23 @@ public:
 		switch (message)                  /* handle the messages */
 		{
 		case WM_COMMAND:
-			switch (HIWORD(wParam))
+			switch (LOWORD(wParam))
 			{
 			case 101: base_window->user_gui->run(); break;
+			default:                      /* for messages that we don't deal with */
+				return DefWindowProc(hwnd, message, wParam, lParam);
+			
 			}
+		case WM_CLOSE:
+			base_window->user_gui->status = EXIT;
+			PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
+			break;
+		case WM_QUIT:
+			base_window->user_gui->status = EXIT;
+			PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
+			break;
 		case WM_DESTROY:
+			base_window->user_gui->status = EXIT;
 			PostQuitMessage(0);       /* send a WM_QUIT to the message queue */
 			break;
 		default:                      /* for messages that we don't deal with */

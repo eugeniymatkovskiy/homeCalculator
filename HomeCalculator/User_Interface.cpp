@@ -44,7 +44,7 @@ User_Interface::User_Interface(HWND window)
 	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 200, 20);
 
 	this->status = INPUT_DATA;
-
+	this->materials = nullptr;
 
 }
 
@@ -108,88 +108,110 @@ void User_Interface::add_materials(vector<MATERIAL*>* materials)
 
 void  User_Interface::run()
 {
-	if (this->status == OUTPUT_DATA)
-	{
-		this->show(SW_HIDE);
-		this->OK_button->set_text("Расчет");
-		this->OK_button->show(SW_SHOW);
-		this->status = INPUT_DATA;
-	}
+	do{
+		
 
-	if (this->status == INPUT_DATA)
-	{
-		int type_build = this->type_build_box->get_selected_index();
-		int num_floors = _ttoi(this->num_floors_edit->get_text());
-		int length = _ttoi(this->length_edit->get_text());
-		int width = _ttoi(this->width_edit->get_text());
-		int mat_fund = this->mat_fund_box->get_selected_index();
-		int mat_wall = this->mat_wall_box->get_selected_index();
-		int mat_roof = this->mat_roof_box->get_selected_index();
-		int mat_panel = this->mat_panel_box->get_selected_index();
-		bool podval = this->checkbox->isChecked();
-		Building* building=nullptr;
-		switch (type_build)
+		if (this->status == INPUT_DATA)
 		{
-		case 0 :
-			building = new Home((double)width,(double)length,num_floors);
-			break;
-		case 1:
-			building = new Office((double)width, (double)length, num_floors);
-			break;
-		case 2:
-			building = new Storage((double)width, (double)length, num_floors);
-			break;
-		case 3:
-			building = new Garage((double)width, (double)length, num_floors);
-			break;
-		default:
-			break;
-		}
+			if (this->materials){
+				int type_build = this->type_build_box->get_selected_index();
 
-		if (building){
-			building->addMaterials(this->materials);
-			building->calculate();
+				int num_floors = _ttoi(this->num_floors_edit->get_text());
+				int length = _ttoi(this->length_edit->get_text());
+				int width = _ttoi(this->width_edit->get_text());
+				int mat_fund = this->mat_fund_box->get_selected_index();
+				int mat_wall = this->mat_wall_box->get_selected_index();
+				int mat_roof = this->mat_roof_box->get_selected_index();
+				int mat_panel = this->mat_panel_box->get_selected_index();
+				bool podval = this->checkbox->isChecked();
 
-		}
+				Building* building = nullptr;
+				switch (type_build)
+				{
+				case 0:
+					building = new Home((double)width, (double)length, num_floors);
+					break;
+				case 1:
+					building = new Office((double)width, (double)length, num_floors);
+					break;
+				case 2:
+					building = new Storage((double)width, (double)length, num_floors);
+					break;
+				case 3:
+					building = new Garage((double)width, (double)length, num_floors);
+					break;
+				default:
+					break;
+				}
 
-		this->show(SW_HIDE);
-		this->OK_button->set_text("Новый");
-		this->OK_button->show(SW_SHOW);
-		this->status = OUTPUT_DATA;
-		this->textout("Материал", 10, 10);
-		this->textout("Количество", 100, 10);
-		this->textout("Цена", 200, 10);
-		this->textout("Сумма",300, 10);
-		int X = 10, Y = 20;
-		double itogo = 0;
-		char * buf = 0;
-		int decimal;
-		int sign;
-		int err;
-		for (unsigned int i = 0; i < this->materials->size(); i++)
-		{
-			if (this->materials->at(i)->count != 0)
-			{
-				this->textout((TCHAR*)this->materials->at(i)->type.c_str(), 10, Y);
-				
 
-				buf = (char*)malloc(_CVTBUFSIZE);
-				err = _fcvt_s(buf, _CVTBUFSIZE, this->materials->at(i)->count,3, &decimal, &sign);
-				this->textout((TCHAR*)buf, 100, Y);
-				_itoa_s(this->materials->at(i)->price, buf, _CVTBUFSIZE, 10);
-				this->textout((TCHAR*)buf, 200, Y);
-				double summa = this->materials->at(i)->count * this->materials->at(i)->price;
-				err = _fcvt_s(buf, _CVTBUFSIZE,summa, 3, &decimal, &sign);
-				this->textout((TCHAR*)buf, 300, Y);
-				itogo += summa;
-				Y += 15;
+				if (building){
+
+					building->addMaterials(this->materials);
+					building->calculate();
+
+
+					this->show(SW_HIDE);
+					this->OK_button->set_text("Новый");
+					this->OK_button->show(SW_SHOW);
+					this->status = OUTPUT_DATA;
+					this->textout("Материал", 10, 10);
+					this->textout("Количество", 100, 10);
+					this->textout("Цена", 200, 10);
+					this->textout("Сумма", 300, 10);
+					int X = 10, Y = 20;
+					double itogo = 0;
+					char * buf = 0;
+					int decimal;
+					int sign;
+					int err;
+					for (unsigned int i = 0; i < this->materials->size(); i++)
+					{
+						if (this->materials->at(i)->count != 0)
+						{
+							this->textout((TCHAR*)this->materials->at(i)->type.c_str(), 10, Y);
+
+
+							buf = (char*)malloc(_CVTBUFSIZE);
+							err = _fcvt_s(buf, _CVTBUFSIZE, this->materials->at(i)->count, 3, &decimal, &sign);
+							this->textout((TCHAR*)buf, 100, Y);
+							_itoa_s(this->materials->at(i)->price, buf, _CVTBUFSIZE, 10);
+							this->textout((TCHAR*)buf, 200, Y);
+							double summa = this->materials->at(i)->count * this->materials->at(i)->price;
+							err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
+							this->textout((TCHAR*)buf, 300, Y);
+							itogo += summa;
+							Y += 15;
+						}
+					}
+
+					this->textout("Итого:", 250, Y);
+					err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
+					this->textout((TCHAR*)buf, 300, Y);
+				}
+			}
+			else{
+				this->textout("Нет данных о строительных материалах", 10, 320);
+				this->status = OUTPUT_DATA;
 			}
 		}
+		if (this->status == OUTPUT_DATA)
+		{
 
-		this->textout("Итого:", 250, Y);
-		err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
-		this->textout((TCHAR*)buf, 300, Y);
-	}
-	
+			this->OK_button->set_text("Расчет");
+			this->OK_button->show(SW_SHOW);
+			this->show(SW_SHOW);
+			this->status = INPUT_DATA;
+			
+		}
+		int ID = MessageBox(
+			this->m_window,
+			"Продолжить работу программы?",
+			"HomeCalculator",
+			MB_YESNO
+			);
+		if (ID == IDNO){ this->status = EXIT; }
+		
+	} while (this->status!=EXIT);
 }
 

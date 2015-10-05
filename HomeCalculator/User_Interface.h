@@ -19,7 +19,7 @@
 
 using namespace std;
 
-enum status { INPUT_DATA, OUTPUT_DATA };
+enum status { INPUT_DATA, OUTPUT_DATA,EXIT };
 
 class User_Interface
 {
