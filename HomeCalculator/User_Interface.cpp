@@ -12,6 +12,12 @@
 
 #include "User_Interface.h"
 
+#include "Building.h"
+#include "Home.h"
+#include "Storage.h"
+#include "Office.h"
+#include "Garage.h"
+
 using namespace std;
 
 User_Interface::User_Interface(HWND window)
