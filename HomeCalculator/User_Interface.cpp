@@ -108,8 +108,16 @@ void User_Interface::add_materials(vector<MATERIAL*>* materials)
 
 void  User_Interface::run()
 {
-	do{
-		
+	
+	if (this->status == OUTPUT_DATA)
+	{
+
+		this->OK_button->set_text("Расчет");
+		this->OK_button->show(SW_SHOW);
+		this->show(SW_SHOW);
+		this->status = INPUT_DATA;
+
+	}
 
 		if (this->status == INPUT_DATA)
 		{
@@ -194,24 +202,17 @@ void  User_Interface::run()
 				this->textout("Нет данных о строительных материалах", 10, 320);
 				this->status = OUTPUT_DATA;
 			}
-		}
-		if (this->status == OUTPUT_DATA)
-		{
-
-			this->OK_button->set_text("Расчет");
-			this->OK_button->show(SW_SHOW);
-			this->show(SW_SHOW);
-			this->status = INPUT_DATA;
 			
 		}
-		int ID = MessageBox(
+	
+	/*	int ID = MessageBox(
 			this->m_window,
 			"Продолжить работу программы?",
 			"HomeCalculator",
 			MB_YESNO
 			);
-		if (ID == IDNO){ this->status = EXIT; }
+		if (ID == IDNO){ this->status = EXIT; }*/
 		
-	} while (this->status!=EXIT);
+	
 }
 

@@ -48,7 +48,7 @@ public:
 		case WM_COMMAND:
 			switch (LOWORD(wParam))
 			{
-			case 101: base_window->user_gui->run(); break;
+			case 101: base_window->user_gui->run(); 
 			default:                      /* for messages that we don't deal with */
 				return DefWindowProc(hwnd, message, wParam, lParam);
 			
