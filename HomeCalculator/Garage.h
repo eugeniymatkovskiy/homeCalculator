@@ -12,8 +12,9 @@ public:
 	Garage(const Garage& obj) :Building(obj) {}
 	virtual ~Garage();
 
-	void calculate();						//расчитать все материалы 
-	void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список
+	void calculate();							//расчитать все материалы 
+	void addMaterials(	vector<MATERIAL*>*,
+						vector<MATERIAL*>*);	//добавить материалы в список
 };
 //расчитать все материалы 
 void Garage::calculate()
@@ -21,9 +22,9 @@ void Garage::calculate()
 	this->foundation->calculate();
 }
 //добавить материалы в список
-void Garage::addMaterials(vector<MATERIAL*>* materials)
+void Garage::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
-	this->foundation->addMaterials(materials);
+	this->foundation->addMaterials(mtrl, calcMtrl);
 }
 Garage::~Garage()
 {

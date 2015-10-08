@@ -46,5 +46,6 @@ protected:
 	GuiListBox* mat_panel_box;
 	void textout(const TCHAR* string, int x, int y);
 	vector<MATERIAL*>* materials;
+	vector<MATERIAL*>* calcMtrl;
 
 };

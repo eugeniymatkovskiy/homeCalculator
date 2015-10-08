@@ -155,8 +155,10 @@ void  User_Interface::run()
 
 				if (building){
 
-					building->addMaterials(this->materials);
+					building->createFoundation(mat_fund, podval);
 					building->calculate();
+					building->addMaterials(this->materials, this->calcMtrl);
+
 
 
 					this->show(SW_HIDE);

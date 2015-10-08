@@ -12,8 +12,9 @@ public:
 	Home(const Home& obj) :Building(obj) {}
 	virtual ~Home();
 
-	void calculate();						//расчитать все материалы 
-	void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список
+	void calculate();							//расчитать все материалы 
+	void addMaterials(	vector<MATERIAL*>*,
+						vector<MATERIAL*>*);	//добавить материалы в список
 };
 //расчитать все материалы 
 void Home::calculate()
@@ -21,9 +22,9 @@ void Home::calculate()
 	this->foundation->calculate();
 }
 //добавить материалы в список
-void Home::addMaterials(vector<MATERIAL*>* materials)
+void Home::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
-	this->foundation->addMaterials(materials);
+	this->foundation->addMaterials(mtrl, calcMtrl);
 }
 Home::~Home()
 {

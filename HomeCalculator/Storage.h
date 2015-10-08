@@ -12,8 +12,9 @@ public:
 	Storage(const Storage& obj) :Building(obj) {}
 	virtual ~Storage();
 
-	void calculate();						//расчитать все материалы 
-	void addMaterials(vector<MATERIAL*>*);	//добавить материалы в список
+	void calculate();							//расчитать все материалы 
+	void addMaterials(	vector<MATERIAL*>*,
+						vector<MATERIAL*>*);	//добавить материалы в список
 };
 //расчитать все материалы 
 void Storage::calculate()
@@ -21,9 +22,9 @@ void Storage::calculate()
 	this->foundation->calculate();
 }
 //добавить материалы в список
-void Storage::addMaterials(vector<MATERIAL*>* materials)
+void Storage::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
-	this->foundation->addMaterials(materials);
+	this->foundation->addMaterials(mtrl, calcMtrl);
 }
 Storage::~Storage()
 {
