@@ -4,7 +4,7 @@
 class Roof
 {
 public:
-	Roof(double houseLength, double houseWidth, int roofType, double reftersPrice, double slatePrice, double tilingPrice, double ruberoidPrice);
+	Roof(double houseLength, double houseWidth, int roofType);
 	~Roof();
 
 	void PifagorTheorem();
@@ -23,23 +23,23 @@ protected:
 	double houseLength;//довжина будинку
 	double houseWidth;//ширина будинку
 	double roofLength;//довжина криші
-	double squareRoof;//площа криші
 	double frontonHeight;//висота фронтону
 	double reftersLength;// довжина стропіли
-	double reftersWidth;// відстань між стропілами
+	double reftersWidth;// ширина стропіли
+	double reftersWidthBetween; //відстань між стропілами 
 	double slateWidth;// ширина шифера
 	double slateLength;// довжина шефера
 	double slateLayingOn;//ширина накладання шифера
-	double tilingWidth;//ширина металочерепиці
-	double tilingLength;//довжина металочерепиці
-	double tilingLayingOn;//ширина накладання металочерепиці
 	int roofType;
 	int reftersAmount;
 	int slateAmount;
 	int tilingAmount;
-	double reftersPrice;
+	int ruberoidAmount;
+
+
+	/*double reftersPrice;
 	double slatePrice;
 	double tilingPrice;
-	double ruberoidPrice;
+	double ruberoidPrice;*/
 };
 
