@@ -46,15 +46,16 @@ void Parser::setupMaterialPriceToVector(vector<string> materialData)
 
 	MATERIAL *newMaterial = new MATERIAL();
 
-	newMaterial->id = newMaterialId;
 	newMaterial->groupId = stoi(materialData[0], nullptr, 10);
-	newMaterial->type = materialData[1];
-	newMaterial->price = stod(materialData[2]);
+	newMaterial->id = stoi(materialData[1], nullptr, 10);;
+	newMaterial->type = materialData[3];
+	newMaterial->price = stod(materialData[4]);
 
 	newMaterial->width = 0;
 	newMaterial->height = 0;
 	newMaterial->length = 0;
 	newMaterial->count = 0;
+
 	newMaterial->unit = 0;
 
 	materials->push_back(newMaterial);
