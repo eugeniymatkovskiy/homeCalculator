@@ -1,6 +1,7 @@
 #pragma once
 #include "HomeCalculator.h"
 #include "Foundation.h"
+#include "Roof.h"
 
 
 class Building
@@ -31,13 +32,14 @@ public:
 	double getWidth();										//получить ширину здания (м)
 	int getfloorCount();									//получить высоту здания (м)
 	void createFoundation(int, bool);						//создать фундамент
+	//void createFloor();									//создать этаж
+	void createRoof(int);									//создать крышу
 	virtual void calculate() = 0;							//расчитать все материалы 
 	virtual void addMaterials(	vector<MATERIAL*>*,
 								vector<MATERIAL*>*) = 0;	//добавить материалы в список
-	//virtual void createFloor();							//создать этаж
-	//virtual void createRoof();							//создать крышу
-
-	Foundation* foundation;				//фундамент
+	Foundation* foundation;									//фундамент
+	//Wall* floor;											//этаж
+	Roof* roof;												//крыша
 	virtual ~Building();
 };
 
@@ -66,6 +68,13 @@ void Building::createFoundation(int material, bool basement)
 		this->getfloorCount(),
 		material,
 		basement);
+}
+//создание крыши
+void Building::createRoof(int roofType)
+{
+	this->roof = new Roof(this->getLength(),
+		this->getWidth(),
+		roofType);
 }
 //установить длину здания (м)
 void Building::setLength(double length)
@@ -100,5 +109,6 @@ int Building::getfloorCount()
 Building::~Building()
 {
 	delete this->foundation;
+	delete this->roof;
 }
 

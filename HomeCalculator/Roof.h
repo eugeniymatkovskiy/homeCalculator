@@ -10,10 +10,13 @@ public:
 	void PifagorTheorem();
 	void roofSize();
 	void roofPrice();
-	void getReftersAmount(); //строп≥ли
-	void getSlateAmount(); //шифер
-	void getTilingAmount(); //металочерепиц€
-	void getRuberoidAmount(); //рубероњд;
+	int getReftersAmount(); //строп≥ли
+	int getSlateAmount(); //шифер
+	int getTilingAmount(); //металочерепиц€
+	int getRuberoidAmount(); //рубероњд;
+	int getRoofType();
+	void addMaterials(vector<MATERIAL*>*,
+		vector<MATERIAL*>*);	//считать и добавить материалы в новый список
 	
 
 protected:

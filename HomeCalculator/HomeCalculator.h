@@ -55,6 +55,12 @@ const int FOUND_CONCRETE_ID = 1000;
 const int FOUND_STONE_ID = 1001;
 const int FOUND_BLOCK_ID = 1002;
 
+//id материалов крыши
+const int ROOF_REFTERS_ID = 1003;
+const int ROOF_SLATE_ID = 1004;
+const int ROOF_TILING_ID = 1005;
+const int ROOF_RUBEROID_ID = 1006;
+
 //параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)
 const double BLOCK_WIDTH_300 = 300;				//ширина фундаментного блока (мм)

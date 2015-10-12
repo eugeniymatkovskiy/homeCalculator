@@ -20,11 +20,16 @@ public:
 void Storage::calculate()
 {
 	this->foundation->calculate();
+	this->roof->roofSize();
 }
 //добавить материалы в список
 void Storage::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
+	//добавить материалы фундамента в список
 	this->foundation->addMaterials(mtrl, calcMtrl);
+
+	//добавить материалы крыши в список
+	this->roof->addMaterials(mtrl, calcMtrl);
 }
 Storage::~Storage()
 {

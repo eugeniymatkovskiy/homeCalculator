@@ -156,6 +156,7 @@ void  User_Interface::run()
 				if (building){
 
 					building->createFoundation(mat_fund, podval);
+					building->createRoof(mat_roof);
 					building->calculate();
 					building->addMaterials(this->materials, this->calcMtrl);
 

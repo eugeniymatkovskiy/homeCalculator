@@ -20,11 +20,16 @@ public:
 void Home::calculate()
 {
 	this->foundation->calculate();
+	this->roof->roofSize();
 }
 //добавить материалы в список
 void Home::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
+	//добавить материалы фундамента в список
 	this->foundation->addMaterials(mtrl, calcMtrl);
+
+	//добавить материалы крыши в список
+	this->roof->addMaterials(mtrl, calcMtrl);
 }
 Home::~Home()
 {
