@@ -123,8 +123,10 @@ void  User_Interface::run()
 				int length = _ttoi(this->length_edit->get_text());
 				int width = _ttoi(this->width_edit->get_text());
 				int mat_fund = this->mat_fund_box->get_selected_index();
+				mat_fund = this->materials->at(mat_fund)->id;
 				int mat_wall = this->mat_wall_box->get_selected_index();
 				int mat_roof = this->mat_roof_box->get_selected_index();
+				mat_roof = this->materials->at(mat_roof)->id;
 				int mat_panel = this->mat_panel_box->get_selected_index();
 				bool podval = this->checkbox->isChecked();
 
@@ -171,29 +173,31 @@ void  User_Interface::run()
 					int decimal;
 					int sign;
 					int err;
-					for (unsigned int i = 0; i < this->materials->size(); i++)
-					{
-						if (this->materials->at(i)->count != 0)
+					if (!this->calcMtrl->empty()){
+						for (unsigned int i = 0; i < this->calcMtrl->size(); i++)
 						{
-							this->textout((TCHAR*)this->materials->at(i)->type.c_str(), 10, Y);
+							if (this->calcMtrl->at(i)->count != 0)
+							{
+								this->textout((TCHAR*)this->calcMtrl->at(i)->type.c_str(), 10, Y);
 
 
-							buf = (char*)malloc(_CVTBUFSIZE);
-							err = _fcvt_s(buf, _CVTBUFSIZE, this->materials->at(i)->count, 3, &decimal, &sign);
-							this->textout((TCHAR*)buf, 100, Y);
-							_itoa_s(this->materials->at(i)->price, buf, _CVTBUFSIZE, 10);
-							this->textout((TCHAR*)buf, 200, Y);
-							double summa = this->materials->at(i)->count * this->materials->at(i)->price;
-							err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
-							this->textout((TCHAR*)buf, 300, Y);
-							itogo += summa;
-							Y += 15;
+								buf = (char*)malloc(_CVTBUFSIZE);
+								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 3, &decimal, &sign);
+								this->textout((TCHAR*)buf, 100, Y);
+								_itoa_s(this->calcMtrl->at(i)->price, buf, _CVTBUFSIZE, 10);
+								this->textout((TCHAR*)buf, 200, Y);
+								double summa = this->calcMtrl->at(i)->count * this->materials->at(i)->price;
+								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
+								this->textout((TCHAR*)buf, 300, Y);
+								itogo += summa;
+								Y += 15;
+							}
 						}
-					}
 
-					this->textout("Итого:", 250, Y);
-					err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
-					this->textout((TCHAR*)buf, 300, Y);
+						this->textout("Итого:", 250, Y);
+						err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
+						this->textout((TCHAR*)buf, 300, Y);
+					}
 				}
 			}
 			else{
