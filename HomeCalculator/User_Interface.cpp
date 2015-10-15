@@ -1,14 +1,6 @@
 #pragma once
-#include <Windows.h>
-#include <tchar.h>
 
 #include "MainWindow.h"
-#include "GuiControl.h"
-#include "OpenGLViewPort.h"
-#include "GuiCheckBox.h"
-#include "GuiEditNum.h"
-#include "GuiComboBox.h"
-#include "GuiListBox.h"
 
 #include "User_Interface.h"
 
@@ -17,8 +9,6 @@
 #include "Storage.h"
 #include "Office.h"
 #include "Garage.h"
-
-using namespace std;
 
 User_Interface::User_Interface(HWND window)
 {
@@ -44,8 +34,13 @@ User_Interface::User_Interface(HWND window)
 	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 200, 20);
 
 	this->status = INPUT_DATA;
-	this->materials = nullptr;
+	
 
+	vector<MATERIAL *> tmpMaterials;
+	Parser materialParser(&tmpMaterials);
+	materialParser.init();
+
+	this->materials = &tmpMaterials;
 }
 
 User_Interface::~User_Interface()

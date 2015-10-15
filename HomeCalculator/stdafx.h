@@ -20,7 +20,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#define URLFORDOWNLOAD "https://demo-project-lestat90-2.c9.io/test.txt"
+#define URLFORDOWNLOAD "https://demo-project-lestat90-2.c9.io/materialPrices.txt"
 #define MATERIALPRICES "materialPrices.txt"
 #define COUNTRELEVANTDAYFORMATERIALPRICES 2
 
