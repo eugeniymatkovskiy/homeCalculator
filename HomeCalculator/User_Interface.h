@@ -33,7 +33,7 @@ public:
 	void show(int cmdShow);
 	void print_static_text();
 	void run();
-	void add_materials(vector<MATERIAL *> *materials);
+	void add_materials();
 protected:
 	HWND m_window;
 	GuiControl* OK_button;

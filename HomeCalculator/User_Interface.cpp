@@ -41,6 +41,7 @@ User_Interface::User_Interface(HWND window)
 	materialParser.init();
 
 	this->materials = &tmpMaterials;
+	this->add_materials();
 }
 
 User_Interface::~User_Interface()
@@ -92,9 +93,8 @@ void User_Interface::print_static_text()
 	this->textout("Материал перекрытий", 20, 290);
 }
 
-void User_Interface::add_materials(vector<MATERIAL*>* materials)
+void User_Interface::add_materials()
 {
-	this->materials = materials;
 	this->mat_fund_box->add_materials(materials);
 	this->mat_panel_box->add_materials(materials);
 	this->mat_roof_box->add_materials(materials);
