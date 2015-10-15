@@ -27,8 +27,14 @@ public:
 
 	int get_selected_index()
 	{
-		return (int)SendMessage(this->hwnd, LB_GETSEL, 0, 0);
+		return (int)SendMessage(this->hwnd, LB_GETCURSEL, 0, 0);
 	}
+
+	int get_top_index()
+	{
+		return (int)SendMessage(this->hwnd, LB_GETTOPINDEX, 0, 0);
+	}
+
 	void add_materials(vector<MATERIAL*>* mat)
 	{
 		TCHAR* txt;

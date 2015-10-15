@@ -122,12 +122,12 @@ void  User_Interface::run()
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
 				int length = _ttoi(this->length_edit->get_text());
 				int width = _ttoi(this->width_edit->get_text());
-				int mat_fund = this->mat_fund_box->get_selected_index();
-				mat_fund = this->materials->at(mat_fund)->id;
-				int mat_wall = this->mat_wall_box->get_selected_index();
-				int mat_roof = this->mat_roof_box->get_selected_index();
+				int id_mat_fund = this->mat_fund_box->get_top_index();
+				int mat_fund = this->materials->at(id_mat_fund)->id;
+				int mat_wall = this->mat_wall_box->get_top_index();
+				int mat_roof = this->mat_roof_box->get_top_index();
 				mat_roof = this->materials->at(mat_roof)->id;
-				int mat_panel = this->mat_panel_box->get_selected_index();
+				int mat_panel = this->mat_panel_box->get_top_index();
 				bool podval = this->checkbox->isChecked();
 
 				Building* building = nullptr;
