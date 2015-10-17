@@ -35,12 +35,8 @@ User_Interface::User_Interface(HWND window)
 
 	this->status = INPUT_DATA;
 	
-
-	vector<MATERIAL *> tmpMaterials;
-	Parser materialParser(&tmpMaterials);
+	Parser materialParser(materials);
 	materialParser.init();
-
-	this->materials = &tmpMaterials;
 	this->add_materials();
 }
 

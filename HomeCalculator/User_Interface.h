@@ -47,7 +47,7 @@ protected:
 	GuiListBox* mat_roof_box;
 	GuiListBox* mat_panel_box;
 	void textout(const TCHAR* string, int x, int y);
-	vector<MATERIAL *> *materials;
+	vector<MATERIAL *> *materials = new vector<MATERIAL *>;
 	vector<MATERIAL *> *calcMtrl;
 
 };
