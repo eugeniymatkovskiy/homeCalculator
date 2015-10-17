@@ -141,6 +141,7 @@ void Roof::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl){
 			if ((*mtrl)[i]->id == ROOF_REFTERS_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getReftersAmount();
@@ -161,6 +162,7 @@ void Roof::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl){
 			if ((*mtrl)[i]->id == ROOF_SLATE_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getSlateAmount();
@@ -181,6 +183,7 @@ void Roof::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl){
 			if ((*mtrl)[i]->id == ROOF_TILING_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getTilingAmount();
@@ -201,6 +204,7 @@ void Roof::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl){
 			if ((*mtrl)[i]->id == ROOF_RUBEROID_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getRuberoidAmount();

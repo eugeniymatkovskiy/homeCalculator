@@ -18,12 +18,17 @@ using namespace std;
 //******************** ‘”Ќƒјћ≈Ќ“ **********************
 
 //тип фундамента
-enum FoundMaterial
-{
-	FOUND_CONCRETE = 1,		//бетон
-	FOUND_BLOCK,			//блок
-	FOUND_STONE				//камень
-};
+//enum FoundMaterial
+//{
+//	FOUND_CONCRETE = 1,		//бетон
+//	FOUND_BLOCK,			//блок
+//	FOUND_STONE				//камень
+//};
+
+const int FOUND_CONCRETE = 201;		//бетон
+const int FOUND_BLOCK = 801;		//блок
+const int FOUND_STONE = 101;		//камень
+
 //тип материала
 //string MTRL_CONCRETE = "бетон";
 //string MTRL_STONE = "камень";
@@ -51,15 +56,15 @@ const double FOUND_THICK_4FLOOR = 0.5;			//толщина фундамента дл€ 4 этажей (м)
 const double FOUND_THICK_5FLOOR = 0.6;			//толщина фундамента дл€ 5 этажей (м)
 
 //id материалов фундамента
-const int FOUND_CONCRETE_ID = 1000;
-const int FOUND_STONE_ID = 1001;
-const int FOUND_BLOCK_ID = 1002;
+const int FOUND_CONCRETE_ID = 201;
+const int FOUND_STONE_ID = 201;
+const int FOUND_BLOCK_ID = 801;
 
 //id материалов крыши
-const int ROOF_REFTERS_ID = 1003;
-const int ROOF_SLATE_ID = 1004;
-const int ROOF_TILING_ID = 1005;
-const int ROOF_RUBEROID_ID = 1006;
+const int ROOF_REFTERS_ID = 1001;
+const int ROOF_SLATE_ID = 501;
+const int ROOF_TILING_ID = 601;
+const int ROOF_RUBEROID_ID = 901;
 
 //параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)

@@ -113,7 +113,7 @@ void  User_Interface::run()
 		if (this->status == INPUT_DATA)
 		{
 			if (this->materials){
-				int type_build = this->type_build_box->get_selected_index();
+				int type_build = this->type_build_box->get_top_index();
 
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
 				int length = _ttoi(this->length_edit->get_text());
@@ -159,11 +159,11 @@ void  User_Interface::run()
 					this->OK_button->set_text("Новый");
 					this->OK_button->show(SW_SHOW);
 					this->status = OUTPUT_DATA;
-					this->textout("Материал", 10, 10);
-					this->textout("Количество", 100, 10);
-					this->textout("Цена", 200, 10);
-					this->textout("Сумма", 300, 10);
-					int X = 10, Y = 20;
+					this->textout("Материал", 10, 320);
+					this->textout("Количество", 100, 320);
+					this->textout("Цена", 200, 320);
+					this->textout("Сумма", 300, 320);
+					int X = 10, Y = 340;
 					double itogo = 0;
 					char * buf = 0;
 					int decimal;
@@ -186,7 +186,7 @@ void  User_Interface::run()
 								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
 								this->textout((TCHAR*)buf, 300, Y);
 								itogo += summa;
-								Y += 15;
+								Y += 20;
 							}
 						}
 

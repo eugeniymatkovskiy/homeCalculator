@@ -440,6 +440,7 @@ void Foundation::addMaterials(vector<MATERIAL*>* materials, vector<MATERIAL*>* c
 			if ((*materials)[i]->id == FOUND_CONCRETE_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*materials)[i];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getConcreteWeight();
@@ -460,6 +461,7 @@ void Foundation::addMaterials(vector<MATERIAL*>* materials, vector<MATERIAL*>* c
 			if ((*materials)[j]->id == FOUND_STONE_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*materials)[j];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getStoneWeight();
@@ -480,6 +482,7 @@ void Foundation::addMaterials(vector<MATERIAL*>* materials, vector<MATERIAL*>* c
 			if ((*materials)[k]->id == FOUND_BLOCK_ID)
 			{
 				//копируем материал
+				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*materials)[k];
 				//добавляем к-во материала
 				tmpMaterial->count = this->getBlocksCount();

@@ -48,6 +48,6 @@ protected:
 	GuiListBox* mat_panel_box;
 	void textout(const TCHAR* string, int x, int y);
 	vector<MATERIAL *> *materials = new vector<MATERIAL *>;
-	vector<MATERIAL *> *calcMtrl;
+	vector<MATERIAL *> *calcMtrl = new vector<MATERIAL *>;
 
 };
