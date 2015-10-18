@@ -101,3 +101,8 @@ TCHAR*  GuiControl::get_text()
 	SendMessage(hwnd, WM_GETTEXT, length + 1, (LPARAM)buffer);
 	return buffer;
 }
+
+void GuiControl::set_enable(BOOL bEnable)
+{
+	EnableWindow(this->hwnd, bEnable);
+}

@@ -46,4 +46,34 @@ public:
 			this->addstring(txt);
 		}
 	}
+
+	void add_group_materials(vector<MATERIAL*>* mat, int grupID)
+	{
+		TCHAR* txt;
+		MATERIAL* noviy;
+		for (unsigned int i = 0; i < mat->size(); i++)
+		{
+			noviy = mat->at(i);
+			if (noviy->groupId == grupID)
+			{
+				txt = (TCHAR*)noviy->type.c_str();
+				int pos =(int) SendMessage(this->hwnd,
+					LB_ADDSTRING,
+					NULL,
+					(LPARAM)txt);
+				SendMessage(this->hwnd, LB_SETITEMDATA, pos, (LPARAM)noviy->id);
+
+			}
+		}
+	}
+
+
+	int get_id_top_material()
+	{
+		int pos = (int)SendMessage(this->hwnd, LB_GETTOPINDEX, 0, 0);
+		return (int)SendMessage(this->hwnd, LB_GETITEMDATA, pos, 0);
+
+	}
+
+
 };

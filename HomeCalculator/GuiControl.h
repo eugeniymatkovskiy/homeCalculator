@@ -13,6 +13,7 @@ public:
 	virtual ~GuiControl();
 	void show(int cmdShow);
 	void set_text(TCHAR* text);
+	void set_enable(BOOL bEnable);
 	TCHAR* get_text();
 	TCHAR* get_classname();
 	TCHAR* get_title();

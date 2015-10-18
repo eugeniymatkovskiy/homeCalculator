@@ -34,8 +34,7 @@ public:
 	void print_static_text();
 	void run();
 	void add_materials();
-protected:
-	HWND m_window;
+
 	GuiControl* OK_button;
 	GuiListBox* type_build_box;
 	GuiEditNum* num_floors_edit;
@@ -46,6 +45,8 @@ protected:
 	GuiListBox* mat_wall_box;
 	GuiListBox* mat_roof_box;
 	GuiListBox* mat_panel_box;
+protected:
+	HWND m_window;
 	void textout(const TCHAR* string, int x, int y);
 	vector<MATERIAL *> *materials = new vector<MATERIAL *>;
 	vector<MATERIAL *> *calcMtrl = new vector<MATERIAL *>;

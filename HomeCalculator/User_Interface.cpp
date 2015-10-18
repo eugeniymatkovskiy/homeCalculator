@@ -99,20 +99,21 @@ void User_Interface::add_materials()
 
 void  User_Interface::run()
 {
-	
-	if (this->status == OUTPUT_DATA)
-	{
+	switch (this->status){
 
-		this->OK_button->set_text("Расчет");
-		this->OK_button->show(SW_SHOW);
-		this->show(SW_SHOW);
-		this->status = INPUT_DATA;
-
-	}
-
-		if (this->status == INPUT_DATA)
+	case OUTPUT_DATA:
 		{
-			if (this->materials){
+
+			this->OK_button->set_text("Расчет");
+			this->OK_button->show(SW_SHOW);
+			this->show(SW_SHOW);
+			this->status = INPUT_DATA;
+			break;
+		}
+
+		case INPUT_DATA:
+		{
+			if (!this->materials->empty()){
 				int type_build = this->type_build_box->get_top_index();
 
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
@@ -200,17 +201,11 @@ void  User_Interface::run()
 				this->textout("Нет данных о строительных материалах", 10, 320);
 				this->status = OUTPUT_DATA;
 			}
-			
+			break;
 		}
-	
-	/*	int ID = MessageBox(
-			this->m_window,
-			"Продолжить работу программы?",
-			"HomeCalculator",
-			MB_YESNO
-			);
-		if (ID == IDNO){ this->status = EXIT; }*/
+
 		
-	
+
+	}
 }
 
