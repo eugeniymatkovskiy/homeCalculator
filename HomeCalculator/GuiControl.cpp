@@ -6,11 +6,12 @@ GuiControl::GuiControl()
 }
 
 GuiControl::GuiControl(TCHAR* classname, TCHAR* title, HWND owner, 
-							int x, int y, int width, int height,DWORD style)
+							int id2, int x, int y, int width, int height,DWORD style)
 {
 	this->classname = classname;
 	this->title = title;
 	this->owner = owner;
+	this->id2 = id2;
 	this->hwnd = CreateWindowEx(0,
 		classname,
 		title,
@@ -82,6 +83,11 @@ HWND GuiControl::get_hwnd()
 HMENU GuiControl::get_id()
 {
 	return this->id;
+}
+
+int GuiControl::get_id2()
+{
+	return this->id2;
 }
 
 void GuiControl::set_text(TCHAR* text)

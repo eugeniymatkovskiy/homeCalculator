@@ -8,7 +8,7 @@ class GuiControl
 {
 public:
 	GuiControl();
-	GuiControl(TCHAR* classname, TCHAR* title, HWND owner, int x, int y, int width, int height, DWORD style );
+	GuiControl(TCHAR* classname, TCHAR* title, HWND owner, int id2, int x, int y, int width, int height, DWORD style );
 	GuiControl(TCHAR* classname, TCHAR* title, HWND owner,HMENU id, int x, int y, int width, int height, DWORD style);
 	virtual ~GuiControl();
 	void show(int cmdShow);
@@ -19,7 +19,9 @@ public:
 	HWND get_owner();
 	HWND get_hwnd();
 	HMENU get_id();
+	int get_id2();
 protected:
+	int id2;
 	HMENU id;
 	TCHAR* classname;
 	TCHAR* title;

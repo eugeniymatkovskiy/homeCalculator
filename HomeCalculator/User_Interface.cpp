@@ -16,28 +16,30 @@ User_Interface::User_Interface(HWND window)
 	this->OK_button = new GuiControl("BUTTON", "Расчет", this->m_window, (HMENU)101, 225, 430, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 
-	this->type_build_box = new GuiListBox(this->m_window, 200, 50, 200, 20);
+	this->type_build_box = new GuiListBox(this->m_window, 9, 200, 50, 200, 20);
 	this->type_build_box->addstring("Жилое здание");
 	this->type_build_box->addstring("Офис");
 	this->type_build_box->addstring("Склад");
 	this->type_build_box->addstring("Гараж");
 
 
-	this->num_floors_edit = new GuiEditNum(this->m_window, 200, 80, 100, 20);
-	this->length_edit = new GuiEditNum(this->m_window, 200, 110, 100, 20);
-	this->width_edit = new GuiEditNum(this->m_window, 200, 140, 100, 20);
-	this->mat_fund_box = new GuiListBox(this->m_window, 200, 170, 200, 20);
-	this->checkbox = new GuiCheckBox(this->m_window, 20, 200, 100, 20);
+	this->num_floors_edit = new GuiEditNum(this->m_window, 6, 200, 80, 100, 20);
+	this->length_edit = new GuiEditNum(this->m_window, 7, 200, 110, 100, 20);
+	this->width_edit = new GuiEditNum(this->m_window, 8, 200, 140, 100, 20);
+	this->mat_fund_box = new GuiListBox(this->m_window, 1, 200, 170, 200, 20);
+	this->checkbox = new GuiCheckBox(this->m_window, 5, 20, 200, 100, 20);
 	this->checkbox->set_text("Подвал");
-	this->mat_wall_box = new GuiListBox(this->m_window, 200, 230, 200, 20);
-	this->mat_roof_box = new GuiListBox(this->m_window, 200, 260, 200, 20);
-	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 200, 20);
+	this->mat_wall_box = new GuiListBox(this->m_window, 2, 200, 230, 200, 20);
+	this->mat_roof_box = new GuiListBox(this->m_window, 3, 200, 260, 200, 20);
+	this->mat_panel_box = new GuiListBox(this->m_window, 4, 200, 290, 200, 20);
 
 	this->status = INPUT_DATA;
 	
 	Parser materialParser(materials);
 	materialParser.init();
 	this->add_materials();
+
+	calcMtrl = materials;
 }
 
 User_Interface::~User_Interface()
@@ -64,7 +66,10 @@ void User_Interface::show(int cmdShow)
 	this->mat_fund_box->show(cmdShow);
 	this->checkbox->show(cmdShow);
 	this->mat_wall_box->show(cmdShow);
-	this->mat_roof_box->show(cmdShow);
+	int type_build = this->type_build_box->get_top_index();
+	if (type_build != 2 || type_build != 3) {
+		this->mat_roof_box->show(cmdShow);
+	}
 	this->mat_panel_box->show(cmdShow);
 }
 
@@ -91,15 +96,25 @@ void User_Interface::print_static_text()
 
 void User_Interface::add_materials()
 {
-	this->mat_fund_box->add_materials(materials);
-	this->mat_panel_box->add_materials(materials);
-	this->mat_roof_box->add_materials(materials);
-	this->mat_wall_box->add_materials(materials);
+	int fund = this->mat_fund_box->get_id2();
+	int panel = this->mat_panel_box->get_id2();
+	int roof = this->mat_roof_box->get_id2();
+	int wall = this->mat_wall_box->get_id2();
+
+	this->mat_fund_box->add_materials(materials, fund);
+	this->mat_panel_box->add_materials(materials, panel);
+	this->mat_roof_box->add_materials(materials, roof);
+	this->mat_wall_box->add_materials(materials, wall);
 }
 
 void  User_Interface::run()
 {
+	/*int type_build = this->type_build_box->get_top_index();
+	if (type_build != 2 || type_build != 3) {
+		this->mat_roof_box->show(SW_HIDE);
+	}*/
 	
+
 	if (this->status == OUTPUT_DATA)
 	{
 
@@ -114,16 +129,20 @@ void  User_Interface::run()
 		{
 			if (this->materials){
 				int type_build = this->type_build_box->get_top_index();
-
+				this->show(SW_SHOW);
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
 				int length = _ttoi(this->length_edit->get_text());
 				int width = _ttoi(this->width_edit->get_text());
-				int id_mat_fund = this->mat_fund_box->get_top_index();
-				int mat_fund = this->materials->at(id_mat_fund)->id;
-				int mat_wall = this->mat_wall_box->get_top_index();
-				int mat_roof = this->mat_roof_box->get_top_index();
-				mat_roof = this->materials->at(mat_roof)->id;
-				int mat_panel = this->mat_panel_box->get_top_index();
+				/*char* sel_fund = this->mat_fund_box->get_text();
+				TCHAR* sel_fund2 = this->mat_fund_box->get_text();*/
+				int selected_mat_fund = this->mat_fund_box->get_top_index();
+				int id_mat_fund = this->materials->at(selected_mat_fund)->id;
+				int selected_mat_wall = this->mat_wall_box->get_top_index();
+				int id_mat_wall = this->materials->at(selected_mat_wall + 4)->id;
+				int selected_mat_roof = this->mat_roof_box->get_top_index();
+				int id_mat_roof = this->materials->at(selected_mat_roof + 8)->id;
+				int selected_mat_panel = this->mat_panel_box->get_top_index();
+				int id_mat_panel = this->materials->at(selected_mat_panel)->id;
 				bool podval = this->checkbox->isChecked();
 
 				Building* building = nullptr;
@@ -148,8 +167,8 @@ void  User_Interface::run()
 
 				if (building){
 
-					building->createFoundation(mat_fund, podval);
-					building->createRoof(mat_roof);
+					building->createFoundation(id_mat_fund, podval);
+					building->createRoof(id_mat_roof, type_build);
 					building->calculate();
 					building->addMaterials(this->materials, this->calcMtrl);
 
@@ -159,11 +178,11 @@ void  User_Interface::run()
 					this->OK_button->set_text("Новый");
 					this->OK_button->show(SW_SHOW);
 					this->status = OUTPUT_DATA;
-					this->textout("Материал", 10, 320);
-					this->textout("Количество", 100, 320);
-					this->textout("Цена", 200, 320);
-					this->textout("Сумма", 300, 320);
-					int X = 10, Y = 340;
+					this->textout("Материал", 10, 50);
+					this->textout("Количество", 100, 50);
+					this->textout("Цена", 200, 50);
+					this->textout("Сумма", 300, 50);
+					int X = 10, Y = 70;
 					double itogo = 0;
 					char * buf = 0;
 					int decimal;
@@ -178,12 +197,16 @@ void  User_Interface::run()
 
 
 								buf = (char*)malloc(_CVTBUFSIZE);
-								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 3, &decimal, &sign);
+								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 0, &decimal, &sign);
 								this->textout((TCHAR*)buf, 100, Y);
 								_itoa_s(this->calcMtrl->at(i)->price, buf, _CVTBUFSIZE, 10);
 								this->textout((TCHAR*)buf, 200, Y);
+								/*for (int j = 0; j < this->materials->size(); j++)
+								{
+									if (this->calcMtrl->at(i))
+								}*/
 								double summa = this->calcMtrl->at(i)->count * this->materials->at(i)->price;
-								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
+								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 0, &decimal, &sign);
 								this->textout((TCHAR*)buf, 300, Y);
 								itogo += summa;
 								Y += 20;

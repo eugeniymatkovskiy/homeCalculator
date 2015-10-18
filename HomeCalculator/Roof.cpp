@@ -1,10 +1,11 @@
 #include "Roof.h"
 #include "HomeCalculator.h"
 
-Roof::Roof(double houseLength, double houseWidth, int roofType) {
+Roof::Roof(double houseLength, double houseWidth, int roofType, int typeBuild) {
 	this->houseLength = houseLength;
 	this->houseWidth = houseWidth;
 	this->roofType = roofType;
+	this->typeBuild = typeBuild;
 	this->frontonHeight = 4;//висота фронтону
 	this->reftersLength = 4.5;// довжина стропіли
 	this->reftersWidthBetween = 0.50; //відстань між стропілами
@@ -39,7 +40,7 @@ void Roof::roofSize() {
 	//cin >> roofType;
 
 	//визначення кількості шиферу
-	if (this->roofType == 0) {
+	if (this->roofType == 301) {
 		double slateAmountHeight = 1; //кількість необхідного шиферу по висоті
 		double tmp = this->slateLength - this->slateLayingOn;
 		while (true) {
@@ -56,54 +57,21 @@ void Roof::roofSize() {
 		//cout << "General refters amount: " << this->reftersAmount << endl;
 	}
 	//визначення кількості металочерепиці
-	else if (this->roofType == 1) {
+	else if (this->roofType == 302) {
 		double squareHomeRoof;
 		squareHomeRoof = this->houseLength * this->roofLength * 2; //площа криші з обох боків
 		this->tilingAmount = ceil(squareHomeRoof);
-		//double tilingAmountHeight = 1; //кількість необхідної металочерепиці по висоті
-		//double tmp = this->tilingLength - this->tilingLayingOn;
-		//while (true) {
-		//	if (this->tilingLength >= this->roofLength) {
-		//		break;
-		//	}
-		//	else {
-		//		tilingAmountHeight++;
-		//		this->tilingLength += tmp;
-		//	}
-		//}
-		//this->tilingAmount = (ceil(this->houseLength / this->tilingWidth) * tilingAmountHeight) * 2; //загальна кількість металочерепиці = визначена кількість металочерепиці по довжині будинку помножена на кількість по висоті 
+		
 		//cout << "General tiling amount: " << this->tilingAmount << endl;
 		//cout << "General refters amount: " << this->reftersAmount << endl;
 	}
-	else if (this->roofType == 2) {
+	else if (this->typeBuild == 2 || this->typeBuild == 3) {
 		double squareGarageRoof;
 		squareGarageRoof = this->houseLength * this->houseWidth;
 		this->tilingAmount = ceil(squareGarageRoof);
 		//cout << "General amount square meters of ruberoid: " << this->ruberoidAmount << endl;
 	}	
 }
-
-//void Roof::roofPrice() {
-//	this->roofSize();
-//
-//	double reftersCost, slateCost, tilingCost, ruberoidCost, generalRoofCost;
-//	//вартість стропіл
-//	reftersCost = this->reftersAmount * this->reftersPrice;
-//	if (this->roofType == 0) {
-//		slateCost = this->slateAmount * this->slatePrice;
-//		generalRoofCost = reftersCost + slateCost;
-//	}
-//	else if (this->roofType == 1) {
-//		tilingCost = this->tilingAmount * this->tilingPrice;
-//		generalRoofCost = reftersCost + tilingCost;
-//	}
-//	else if (this->roofType == 2) {
-//		ruberoidCost = this->ruberoidAmount * this->ruberoidPrice;
-//		generalRoofCost = ruberoidCost;
-//	}
-//
-//	cout << "General cost of the roof is: " << generalRoofCost << endl;
-//}
 
 int Roof::getReftersAmount(){
 	return this->reftersAmount;

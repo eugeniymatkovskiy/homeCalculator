@@ -56,15 +56,15 @@ const double FOUND_THICK_4FLOOR = 0.5;			//толщина фундамента для 4 этажей (м)
 const double FOUND_THICK_5FLOOR = 0.6;			//толщина фундамента для 5 этажей (м)
 
 //id материалов фундамента
-const int FOUND_CONCRETE_ID = 201;
-const int FOUND_STONE_ID = 201;
-const int FOUND_BLOCK_ID = 801;
+const int FOUND_CONCRETE_ID = 101;
+const int FOUND_STONE_ID = 101;
+const int FOUND_BLOCK_ID = 102;
 
 //id материалов крыши
-const int ROOF_REFTERS_ID = 1001;
-const int ROOF_SLATE_ID = 501;
-const int ROOF_TILING_ID = 601;
-const int ROOF_RUBEROID_ID = 901;
+const int ROOF_REFTERS_ID = 304;
+const int ROOF_SLATE_ID = 301;
+const int ROOF_TILING_ID = 302;
+const int ROOF_RUBEROID_ID = 303;
 
 //параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)

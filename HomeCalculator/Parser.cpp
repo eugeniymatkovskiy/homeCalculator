@@ -27,7 +27,7 @@ void Parser::getFileWithMaterialPrice()
 void Parser::readMaterialPriceFile()
 {
 	fstream materialPriceFile;
-	materialPriceFile.open(MATERIALPRICES, ios::in | ios::out | ios::binary);
+	materialPriceFile.open("materialPrices.txt", ios::in | ios::out | ios::binary);
 
 	string line;
 
