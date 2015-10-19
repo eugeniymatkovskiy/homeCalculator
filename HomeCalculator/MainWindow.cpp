@@ -94,3 +94,15 @@ void MainWindow::textout(const TCHAR* string, int x, int y)
 	ReleaseDC(this->hwnd, hdc);
 }
 
+void MainWindow::update_window()
+{
+	UpdateWindow(this->hwnd);
+}
+
+void MainWindow::line(int x1, int y1, int x2, int y2)
+{
+	HDC hdc = GetDC(this->hwnd);
+	MoveToEx(hdc, x1, y1, NULL);
+	LineTo(hdc, x2, y2);
+	ReleaseDC(this->hwnd, hdc);
+}

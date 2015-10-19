@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdio.h>
 #include "MainWindow.h"
 
 #include "User_Interface.h"
@@ -73,6 +74,14 @@ void User_Interface::textout(const TCHAR* string, int x, int y)
 	int lenght = _tcslen(string);
 	HDC hdc = GetDC(this->m_window);
 	TextOut(hdc, x, y, string, lenght);
+	ReleaseDC(this->m_window, hdc);
+}
+
+void User_Interface::line(int x1, int y1, int x2, int y2)
+{
+	HDC hdc = GetDC(this->m_window);
+	MoveToEx(hdc, x1, y1, NULL);
+	LineTo(hdc, x2, y2);
 	ReleaseDC(this->m_window, hdc);
 }
 
@@ -167,11 +176,20 @@ void  User_Interface::run()
 					this->OK_button->set_text("Новый");
 					this->OK_button->show(SW_SHOW);
 					this->status = OUTPUT_DATA;
-					this->textout("Материал", 10, 320);
-					this->textout("Количество", 230, 320);
-					this->textout("Цена", 330, 320);
-					this->textout("Сумма", 400, 320);
-					int X = 10, Y = 340;
+
+					int X = 10, Y = 320;
+					this->textout("Материал", 10, Y);
+					this->textout("Количество", 230, Y);
+					this->textout("Цена", 330, Y);
+					this->textout("Сумма", 400, Y);
+					this->line(5,Y-5, 475, Y-5);
+					this->line(5, Y + 20, 475, Y + 20);
+					this->line(5, Y - 5, 5, Y + 20);
+					this->line(225, Y - 5, 225, Y + 20);
+					this->line(325, Y - 5, 325, Y + 20);
+					this->line(395, Y - 5, 395, Y + 20);
+					this->line(475, Y - 5, 475, Y + 20);
+					Y += 25;
 					double itogo = 0;
 					char * buf = 0;
 					int decimal;
@@ -182,7 +200,9 @@ void  User_Interface::run()
 						{
 							if (this->calcMtrl->at(i)->count != 0)
 							{
-								this->textout((TCHAR*)this->calcMtrl->at(i)->type.c_str(), 10, Y);
+								char name[25];
+								strncpy_s(name,25, this->calcMtrl->at(i)->type.c_str(), 24);
+								this->textout((TCHAR*)name, 10, Y);
 
 
 								buf = (char*)malloc(_CVTBUFSIZE);
@@ -194,13 +214,23 @@ void  User_Interface::run()
 								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
 								this->textout((TCHAR*)buf, 400, Y);
 								itogo += summa;
-								Y += 20;
+								this->line(5, Y + 20, 475, Y + 20);
+								this->line(5, Y - 5, 5, Y + 20);
+								this->line(225, Y - 5, 225, Y + 20);
+								this->line(325, Y - 5, 325, Y + 20);
+								this->line(395, Y - 5, 395, Y + 20);
+								this->line(475, Y - 5, 475, Y + 20);
+								Y += 25;
 							}
 						}
 
 						this->textout("Итого:", 350, Y);
 						err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
 						this->textout((TCHAR*)buf, 400, Y);
+						this->line(345, Y + 20, 475, Y + 20);
+						this->line(345, Y - 5, 345, Y + 20);
+						this->line(395, Y - 5, 395, Y + 20);
+						this->line(475, Y - 5, 475, Y + 20);
 					}
 				}
 			}

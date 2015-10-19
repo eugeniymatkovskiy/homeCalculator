@@ -38,10 +38,13 @@ public:
 	void loop(MSG messages);
 	void show(int cmdShow);
 	void textout(const TCHAR* string, int x, int y);
+	void update_window();
+	void line(int x1, int y1, int x2, int y2);
 	static	LRESULT CALLBACK	WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		if (base_window )
 		{
+			
 			base_window->user_gui->print_static_text();
 			
 		}
