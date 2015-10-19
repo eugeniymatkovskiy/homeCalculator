@@ -78,15 +78,18 @@ void User_Interface::textout(const TCHAR* string, int x, int y)
 
 void User_Interface::print_static_text()
 {
-	this->textout("HomeCalculator-расчет строительной сметы", 20, 20);
-	this->textout("Тип здания", 20, 50);
-	this->textout("Число этажей", 20, 80);
-	this->textout("Длина здания", 20, 110);
-	this->textout("Ширина здания", 20, 140);
-	this->textout("Материал фундамента", 20, 170);
-	this->textout("Материал стен", 20, 230);
-	this->textout("Материал крыши", 20, 260);
-	this->textout("Материал перекрытий", 20, 290);
+	if (this->status == INPUT_DATA)
+	{
+		this->textout("HomeCalculator-расчет строительной сметы", 20, 20);
+		this->textout("Тип здания", 20, 50);
+		this->textout("Число этажей", 20, 80);
+		this->textout("Длина здания", 20, 110);
+		this->textout("Ширина здания", 20, 140);
+		this->textout("Материал фундамента", 20, 170);
+		this->textout("Материал стен", 20, 230);
+		this->textout("Материал крыши", 20, 260);
+		this->textout("Материал перекрытий", 20, 290);
+	}
 }
 
 void User_Interface::add_materials()

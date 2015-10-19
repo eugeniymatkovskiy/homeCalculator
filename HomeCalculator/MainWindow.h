@@ -40,7 +40,7 @@ public:
 	void textout(const TCHAR* string, int x, int y);
 	static	LRESULT CALLBACK	WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		if (base_window && base_window->user_gui->status == INPUT_DATA)
+		if (base_window )
 		{
 			base_window->user_gui->print_static_text();
 			
