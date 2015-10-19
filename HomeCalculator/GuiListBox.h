@@ -38,11 +38,11 @@ public:
 	void add_materials(vector<MATERIAL*>* mat)
 	{
 		TCHAR* txt;
-		MATERIAL* noviy;
+		
 		for (unsigned int i = 0; i < mat->size(); i++)
 		{
-			noviy = mat->at(i);
-			txt = (TCHAR*)noviy->type.c_str();
+			
+			txt = (TCHAR*)mat->at(i)->type.c_str();
 			this->addstring(txt);
 		}
 	}
@@ -50,20 +50,20 @@ public:
 	void add_group_materials(vector<MATERIAL*>* mat, int grupID)
 	{
 		TCHAR* txt;
-		MATERIAL* noviy;
+		
 		for (unsigned int i = 0; i < mat->size(); i++)
 		{
-			noviy = mat->at(i);
-			if (noviy->groupId == grupID)
+			
+			if (mat->at(i)->groupId == grupID)
 			{
-				txt = (TCHAR*)noviy->type.c_str();
-				int pos =(int) SendMessage(this->hwnd,
+				txt = (TCHAR*)mat->at(i)->type.c_str();
+				int pos = (int)SendMessage(this->hwnd,
 					LB_ADDSTRING,
 					NULL,
 					(LPARAM)txt);
-				SendMessage(this->hwnd, LB_SETITEMDATA, pos, (LPARAM)noviy->id);
-
+				SendMessage(this->hwnd, LB_SETITEMDATA, pos, (LPARAM)mat->at(i)->id);
 			}
+			
 		}
 	}
 

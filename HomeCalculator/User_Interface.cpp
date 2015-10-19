@@ -94,10 +94,11 @@ void User_Interface::print_static_text()
 
 void User_Interface::add_materials()
 {
-	this->mat_fund_box->add_materials(materials);
-	this->mat_panel_box->add_materials(materials);
-	this->mat_roof_box->add_materials(materials);
-	this->mat_wall_box->add_materials(materials);
+	this->mat_fund_box->add_group_materials(this->materials,1);
+	this->mat_panel_box->add_group_materials(this->materials,3);
+
+	this->mat_roof_box->add_group_materials(this->materials, 3);
+	this->mat_wall_box->add_group_materials(this->materials, 2);
 }
 
 void  User_Interface::run()
@@ -122,12 +123,15 @@ void  User_Interface::run()
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
 				int length = _ttoi(this->length_edit->get_text());
 				int width = _ttoi(this->width_edit->get_text());
-				int id_mat_fund = this->mat_fund_box->get_top_index();
-				int mat_fund = this->materials->at(id_mat_fund)->id;
-				int mat_wall = this->mat_wall_box->get_top_index();
-				int mat_roof = this->mat_roof_box->get_top_index();
-				mat_roof = this->materials->at(mat_roof)->id;
-				int mat_panel = this->mat_panel_box->get_top_index();
+
+				int mat_fund = this->mat_fund_box->get_id_top_material();
+				
+				int mat_wall = this->mat_wall_box->get_id_top_material();
+				
+				int mat_roof = this->mat_roof_box->get_id_top_material();
+				
+				int mat_panel = this->mat_panel_box->get_id_top_material();
+
 				bool podval = this->checkbox->isChecked();
 
 				Building* building = nullptr;
@@ -164,9 +168,9 @@ void  User_Interface::run()
 					this->OK_button->show(SW_SHOW);
 					this->status = OUTPUT_DATA;
 					this->textout("Материал", 10, 320);
-					this->textout("Количество", 100, 320);
-					this->textout("Цена", 200, 320);
-					this->textout("Сумма", 300, 320);
+					this->textout("Количество", 230, 320);
+					this->textout("Цена", 330, 320);
+					this->textout("Сумма", 400, 320);
 					int X = 10, Y = 340;
 					double itogo = 0;
 					char * buf = 0;
@@ -183,20 +187,20 @@ void  User_Interface::run()
 
 								buf = (char*)malloc(_CVTBUFSIZE);
 								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 3, &decimal, &sign);
-								this->textout((TCHAR*)buf, 100, Y);
+								this->textout((TCHAR*)buf, 230, Y);
 								_itoa_s(this->calcMtrl->at(i)->price, buf, _CVTBUFSIZE, 10);
-								this->textout((TCHAR*)buf, 200, Y);
+								this->textout((TCHAR*)buf, 330, Y);
 								double summa = this->calcMtrl->at(i)->count * this->materials->at(i)->price;
 								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
-								this->textout((TCHAR*)buf, 300, Y);
+								this->textout((TCHAR*)buf, 400, Y);
 								itogo += summa;
 								Y += 20;
 							}
 						}
 
-						this->textout("Итого:", 250, Y);
+						this->textout("Итого:", 350, Y);
 						err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
-						this->textout((TCHAR*)buf, 300, Y);
+						this->textout((TCHAR*)buf, 400, Y);
 					}
 				}
 			}
