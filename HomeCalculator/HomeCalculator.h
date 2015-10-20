@@ -25,9 +25,9 @@ using namespace std;
 //	FOUND_STONE				//камень
 //};
 
-const int FOUND_CONCRETE = 201;		//бетон
-const int FOUND_BLOCK = 801;		//блок
-const int FOUND_STONE = 101;		//камень
+const int FOUND_CONCRETE = 105;		//бетон
+const int FOUND_BLOCK = 106;		//блок
+const int FOUND_STONE = 107;		//камень
 
 //тип материала
 //string MTRL_CONCRETE = "бетон";
@@ -36,6 +36,7 @@ const int FOUND_STONE = 101;		//камень
 //структура для хранения данных разных фундаментных блоков
 struct BLOCK
 {
+	int id;				//id
 	string type;		//тип 
 	double length;		//длина
 	double width;		//ширина
@@ -56,9 +57,12 @@ const double FOUND_THICK_4FLOOR = 0.5;			//толщина фундамента для 4 этажей (м)
 const double FOUND_THICK_5FLOOR = 0.6;			//толщина фундамента для 5 этажей (м)
 
 //id материалов фундамента
-const int FOUND_CONCRETE_ID = 201;
-const int FOUND_STONE_ID = 201;
-const int FOUND_BLOCK_ID = 801;
+const int FOUND_CONCRETE_ID = 105;
+const int FOUND_STONE_ID = 107;
+const int FOUND_BLOCK_FBS936_ID = 101;
+const int FOUND_BLOCK_FBS946_ID = 102;
+const int FOUND_BLOCK_FBS956_ID = 103;
+const int FOUND_BLOCK_FBS966_ID = 104;
 
 //id материалов крыши
 const int ROOF_REFTERS_ID = 1001;

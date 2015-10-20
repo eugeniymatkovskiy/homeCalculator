@@ -238,6 +238,7 @@ void Foundation::selectBlockType()
 			this->thickness = BLOCK_WIDTH_600 / 1000;
 			block.width = BLOCK_WIDTH_600;
 			block.type = BLOCK_FBS966;
+			block.id = FOUND_BLOCK_FBS966_ID;
 		}
 		if (this->thickness <= (BLOCK_WIDTH_500 / 1000) &&
 			this->thickness > (BLOCK_WIDTH_400 / 1000))
@@ -245,6 +246,7 @@ void Foundation::selectBlockType()
 			this->thickness = BLOCK_WIDTH_500 / 1000;
 			block.width = BLOCK_WIDTH_500;
 			block.type = BLOCK_FBS956;
+			block.id = FOUND_BLOCK_FBS956_ID;
 		}
 		if (this->thickness <= (BLOCK_WIDTH_400 / 1000) &&
 			this->thickness > (BLOCK_WIDTH_300 / 1000))
@@ -252,12 +254,14 @@ void Foundation::selectBlockType()
 			this->thickness = BLOCK_WIDTH_400 / 1000;
 			block.width = BLOCK_WIDTH_400;
 			block.type = BLOCK_FBS946;
+			block.id = FOUND_BLOCK_FBS946_ID;
 		}
 		if (this->thickness <= (BLOCK_WIDTH_300 / 1000))
 		{
 			this->thickness = BLOCK_WIDTH_300 / 1000;
 			block.width = BLOCK_WIDTH_300;
 			block.type = BLOCK_FBS936;
+			block.id = FOUND_BLOCK_FBS936_ID;
 		}
 	}
 }
@@ -479,7 +483,7 @@ void Foundation::addMaterials(vector<MATERIAL*>* materials, vector<MATERIAL*>* c
 	{
 		for (int k = 0; k < materials->size(); k++)
 		{
-			if ((*materials)[k]->id == FOUND_BLOCK_ID)
+			if ((*materials)[k]->id == this->block.id)
 			{
 				//копируем материал
 				tmpMaterial = new MATERIAL();
