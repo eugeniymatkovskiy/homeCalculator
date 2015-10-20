@@ -34,7 +34,7 @@ public:
 	void print_static_text();
 	void run();
 	void add_materials();
-
+	void enable_all(BOOL Enable);
 	GuiControl* OK_button;
 	GuiListBox* type_build_box;
 	GuiEditNum* num_floors_edit;

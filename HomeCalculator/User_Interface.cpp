@@ -14,7 +14,7 @@
 User_Interface::User_Interface(HWND window)
 {
 	this->m_window = window;
-	this->OK_button = new GuiControl("BUTTON", "Расчет", this->m_window, (HMENU)101, 225, 430, 50, 20,
+	this->OK_button = new GuiControl("BUTTON", "Расчет", this->m_window, (HMENU)101, 200, 530, 50, 20,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON);
 
 	this->type_build_box = new GuiListBox(this->m_window, 200, 50, 200, 20);
@@ -69,6 +69,19 @@ void User_Interface::show(int cmdShow)
 	this->mat_panel_box->show(cmdShow);
 }
 
+void User_Interface::enable_all(BOOL Enable)
+{
+	this->type_build_box->set_enable(Enable);
+	this->num_floors_edit->set_enable(Enable);
+	this->length_edit->set_enable(Enable);
+	this->width_edit->set_enable(Enable);
+	this->mat_fund_box->set_enable(Enable);
+	this->checkbox->set_enable(Enable);
+	this->mat_wall_box->set_enable(Enable);
+	this->mat_roof_box->set_enable(Enable);
+	this->mat_panel_box->set_enable(Enable);
+}
+
 void User_Interface::textout(const TCHAR* string, int x, int y)
 {
 	int lenght = _tcslen(string);
@@ -116,7 +129,7 @@ void  User_Interface::run()
 
 	case OUTPUT_DATA:
 		{
-
+			this->enable_all(true);
 			this->OK_button->set_text("Расчет");
 			this->OK_button->show(SW_SHOW);
 			this->show(SW_SHOW);
@@ -172,7 +185,7 @@ void  User_Interface::run()
 
 
 
-					this->show(SW_HIDE);
+					this->enable_all(false);
 					this->OK_button->set_text("Новый");
 					this->OK_button->show(SW_SHOW);
 					this->status = OUTPUT_DATA;

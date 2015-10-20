@@ -34,7 +34,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	MSG msg;
 
-	MainWindow* main_window = MainWindow::get_main_window("HomeCalculator", 10, 10, 500, 500);
+	MainWindow* main_window = MainWindow::get_main_window("HomeCalculator", 10, 10, 500, 600);
 	main_window->show(nCmdShow);
 	
 
