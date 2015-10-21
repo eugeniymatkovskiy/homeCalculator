@@ -75,5 +75,10 @@ public:
 
 	}
 
+	void set_top_index(int index)
+	{
+		SendMessage(this->hwnd, LB_SETTOPINDEX, index, 0);
+	}
+
 
 };

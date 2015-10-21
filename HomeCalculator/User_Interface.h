@@ -49,6 +49,8 @@ protected:
 	HWND m_window;
 	void textout(const TCHAR* string, int x, int y);
 	void line(int x1, int y1, int x2, int y2);
+	void update_window();
+	void redraw_window();
 	vector<MATERIAL *> *materials = new vector<MATERIAL *>;
 	vector<MATERIAL *> *calcMtrl = new vector<MATERIAL *>;
 

@@ -27,12 +27,12 @@ User_Interface::User_Interface(HWND window)
 	this->num_floors_edit = new GuiEditNum(this->m_window, 200, 80, 100, 20);
 	this->length_edit = new GuiEditNum(this->m_window, 200, 110, 100, 20);
 	this->width_edit = new GuiEditNum(this->m_window, 200, 140, 100, 20);
-	this->mat_fund_box = new GuiListBox(this->m_window, 200, 170, 200, 20);
+	this->mat_fund_box = new GuiListBox(this->m_window, 200, 170, 280, 20);
 	this->checkbox = new GuiCheckBox(this->m_window, 20, 200, 100, 20);
 	this->checkbox->set_text("Подвал");
-	this->mat_wall_box = new GuiListBox(this->m_window, 200, 230, 200, 20);
-	this->mat_roof_box = new GuiListBox(this->m_window, 200, 260, 200, 20);
-	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 200, 20);
+	this->mat_wall_box = new GuiListBox(this->m_window, 200, 230, 280, 20);
+	this->mat_roof_box = new GuiListBox(this->m_window, 200, 260, 280, 20);
+	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 280, 20);
 
 	this->status = INPUT_DATA;
 	
@@ -123,14 +123,43 @@ void User_Interface::add_materials()
 	this->mat_wall_box->add_group_materials(this->materials, 2);
 }
 
+void User_Interface::update_window()
+{
+	UpdateWindow(this->m_window);
+}
+
+void User_Interface::redraw_window()
+{
+	//RedrawWindow(this->m_window, NULL, NULL, RDW_VALIDATE);
+	RECT rect;
+	GetClientRect(this->m_window, &rect);
+	InvalidateRect(this->m_window, &rect, true);
+}
+
 void  User_Interface::run()
 {
 	switch (this->status){
 
 	case OUTPUT_DATA:
 		{
+			int max = this->calcMtrl->size();
+			for (unsigned int i = 0; i < max; i++)
+			{
+				this->calcMtrl->pop_back();
+			}
+			this->redraw_window();
+			this->type_build_box->set_top_index(0);
+			this->num_floors_edit->set_text("");
+			this->length_edit->set_text("");
+			this->width_edit->set_text("");
+			this->mat_fund_box->set_top_index(0);
+			this->mat_wall_box->set_top_index(0);
+			this->mat_roof_box->set_top_index(0);
+			this->mat_panel_box->set_top_index(0);
+
 			this->enable_all(true);
 			this->OK_button->set_text("Расчет");
+
 			this->OK_button->show(SW_SHOW);
 			this->show(SW_SHOW);
 			this->status = INPUT_DATA;
@@ -143,8 +172,8 @@ void  User_Interface::run()
 				int type_build = this->type_build_box->get_top_index();
 
 				int num_floors = _ttoi(this->num_floors_edit->get_text());
-				int length = _ttoi(this->length_edit->get_text());
-				int width = _ttoi(this->width_edit->get_text());
+				double length = _ttof(this->length_edit->get_text());
+				double width = _ttof(this->width_edit->get_text());
 
 				int mat_fund = this->mat_fund_box->get_id_top_material();
 				
