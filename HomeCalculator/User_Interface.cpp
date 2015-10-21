@@ -179,11 +179,10 @@ void  User_Interface::run()
 				if (building){
 
 					building->createFoundation(mat_fund, podval);
+					building->createWall(type_build, mat_wall);
 					building->createRoof(mat_roof);
 					building->calculate();
 					building->addMaterials(this->materials, this->calcMtrl);
-
-
 
 					this->enable_all(false);
 					this->OK_button->set_text("Новый");

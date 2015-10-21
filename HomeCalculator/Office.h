@@ -20,6 +20,7 @@ public:
 void Office::calculate()
 {
 	this->foundation->calculate();
+	this->wall->calculate();
 	this->roof->roofSize();
 }
 //добавить материалы в список
@@ -27,6 +28,9 @@ void Office::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl)
 {
 	//добавить материалы фундамента в список
 	this->foundation->addMaterials(mtrl, calcMtrl);
+
+	//добавить материалы этажа в список
+	this->wall->addMaterials(mtrl, calcMtrl);
 
 	//добавить материалы крыши в список
 	this->roof->addMaterials(mtrl, calcMtrl);

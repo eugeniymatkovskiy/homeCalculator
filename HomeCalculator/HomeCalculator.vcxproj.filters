@@ -9,6 +9,7 @@
     <ClCompile Include="Roof.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="User_Interface.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
@@ -31,5 +32,6 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="User_Interface.h" />
     <ClInclude Include="GuiListBox.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
 </Project>

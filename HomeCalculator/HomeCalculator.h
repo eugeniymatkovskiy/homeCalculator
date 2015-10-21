@@ -64,6 +64,11 @@ const int FOUND_BLOCK_FBS946_ID = 102;
 const int FOUND_BLOCK_FBS956_ID = 103;
 const int FOUND_BLOCK_FBS966_ID = 104;
 
+//id материалов этажа
+const int WALL_BRICK_ID = 203;
+const int WALL_CINDER_ID = 202;
+const int WALL_RAKUSHNJAK_ID = 204;
+
 //id материалов крыши
 const int ROOF_REFTERS_ID = 1001;
 const int ROOF_SLATE_ID = 501;
