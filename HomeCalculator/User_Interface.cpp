@@ -222,7 +222,7 @@ void  User_Interface::run()
 								this->textout((TCHAR*)buf, 230, Y);
 								_itoa_s(this->calcMtrl->at(i)->price, buf, _CVTBUFSIZE, 10);
 								this->textout((TCHAR*)buf, 330, Y);
-								double summa = this->calcMtrl->at(i)->count * this->materials->at(i)->price;
+								double summa = this->calcMtrl->at(i)->count * this->calcMtrl->at(i)->price;
 								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
 								this->textout((TCHAR*)buf, 400, Y);
 								itogo += summa;
