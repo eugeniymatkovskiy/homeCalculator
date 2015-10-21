@@ -34,7 +34,7 @@ public:
 	int getfloorCount();									//получить высоту здания (м)
 	void createFoundation(int, bool);						//создать фундамент
 	void createWall(int, int);								//создать этаж
-	void createRoof(int);									//создать крышу
+	void createRoof(int, int);									//создать крышу
 	virtual void calculate() = 0;							//расчитать все материалы 
 	virtual void addMaterials(	vector<MATERIAL*>*,
 								vector<MATERIAL*>*) = 0;	//добавить материалы в список
@@ -80,11 +80,12 @@ void Building::createWall(int buildType, int material)
 		material);
 }
 //создание крыши
-void Building::createRoof(int roofType)
+void Building::createRoof(int roofType, int buildType)
 {
 	this->roof = new Roof(this->getLength(),
 		this->getWidth(),
-		roofType);
+		roofType,
+		buildType);
 }
 //установить длину здания (м)
 void Building::setLength(double length)

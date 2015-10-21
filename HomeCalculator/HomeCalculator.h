@@ -70,10 +70,10 @@ const int WALL_CINDER_ID = 202;
 const int WALL_RAKUSHNJAK_ID = 204;
 
 //id материалов крыши
-const int ROOF_REFTERS_ID = 1001;
-const int ROOF_SLATE_ID = 501;
-const int ROOF_TILING_ID = 601;
-const int ROOF_RUBEROID_ID = 901;
+const int ROOF_REFTERS_ID = 304;
+const int ROOF_SLATE_ID = 301;
+const int ROOF_TILING_ID = 302;
+const int ROOF_RUBEROID_ID = 303;
 
 //параметры фундаментного блока
 const double BLOCK_LENGTH_890 = 890;			//длина фундаментного блока (мм)

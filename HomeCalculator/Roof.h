@@ -4,7 +4,7 @@
 class Roof
 {
 public:
-	Roof(double houseLength, double houseWidth, int roofType);
+	Roof(double houseLength, double houseWidth, int roofType, int typeBuild);
 	~Roof();
 
 	void PifagorTheorem();
@@ -34,6 +34,7 @@ protected:
 	double slateLength;// довжина шефера
 	double slateLayingOn;//ширина накладання шифера
 	int roofType;
+	int typeBuild;
 	int reftersAmount;
 	int slateAmount;
 	int tilingAmount;

@@ -180,7 +180,7 @@ void  User_Interface::run()
 
 					building->createFoundation(mat_fund, podval);
 					building->createWall(type_build, mat_wall);
-					building->createRoof(mat_roof);
+					building->createRoof(mat_roof, type_build);
 					building->calculate();
 					building->addMaterials(this->materials, this->calcMtrl);
 
