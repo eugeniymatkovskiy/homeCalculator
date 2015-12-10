@@ -6,16 +6,16 @@ Roof::Roof(double houseLength, double houseWidth, int roofType, int typeBuild) {
 	this->houseWidth = houseWidth;
 	this->roofType = roofType;
 	this->typeBuild = typeBuild;
-	this->frontonHeight = 4;//висота фронтону
-	this->reftersLength = 4.5;// довжина стропіли
-	this->reftersWidthBetween = 0.50; //відстань між стропілами
-	this->reftersWidth = 0.50;// ширина стропіли
-	this->slateWidth = 1.13;// ширина шифера
-	this->slateLength = 1.75;// довжина шифера
-	this->slateLayingOn = 0.20;//ширина накладання шифера
+	this->frontonHeight = 4;//ГўГЁГ±Г®ГІГ  ГґГ°Г®Г­ГІГ®Г­Гі
+	this->reftersLength = 4.5;// Г¤Г®ГўГ¦ГЁГ­Г  Г±ГІГ°Г®ГЇВіГ«ГЁ
+	this->reftersWidthBetween = 1.0; //ГўВіГ¤Г±ГІГ Г­Гј Г¬ВіГ¦ Г±ГІГ°Г®ГЇВіГ«Г Г¬ГЁ
+	this->reftersWidth = 0.50;// ГёГЁГ°ГЁГ­Г  Г±ГІГ°Г®ГЇВіГ«ГЁ
+	this->slateWidth = 1.13;// ГёГЁГ°ГЁГ­Г  ГёГЁГґГҐГ°Г 
+	this->slateLength = 1.75;// Г¤Г®ГўГ¦ГЁГ­Г  ГёГЁГґГҐГ°Г 
+	this->slateLayingOn = 0.20;//ГёГЁГ°ГЁГ­Г  Г­Г ГЄГ«Г Г¤Г Г­Г­Гї ГёГЁГґГҐГ°Г 
 
-	//отримання цін на матеріали
-	//this->reftersPrice = reftersPrice; //за метр квадратний стропіл
+	//Г®ГІГ°ГЁГ¬Г Г­Г­Гї Г¶ВіГ­ Г­Г  Г¬Г ГІГҐГ°ВіГ Г«ГЁ
+	//this->reftersPrice = reftersPrice; //Г§Г  Г¬ГҐГІГ° ГЄГўГ Г¤Г°Г ГІГ­ГЁГ© Г±ГІГ°Г®ГЇВіГ«
 	//this->slatePrice = slatePrice;
 	//this->tilingPrice = tilingPrice;
 	//this->ruberoidPrice = ruberoidPrice;
@@ -25,23 +25,23 @@ Roof::~Roof() {
 }
 
 void Roof::PifagorTheorem() {
-	this->roofLength = sqrt((this->houseWidth / 2) * (this->houseWidth / 2) + this->frontonHeight * this->frontonHeight); //довжина криші
+	this->roofLength = sqrt((this->houseWidth / 2) * (this->houseWidth / 2) + this->frontonHeight * this->frontonHeight); //Г¤Г®ГўГ¦ГЁГ­Г  ГЄГ°ГЁГёВі
 }
 
 void Roof::roofSize() {
-	this->PifagorTheorem();// визначення довжини криші
+	this->PifagorTheorem();// ГўГЁГ§Г­Г Г·ГҐГ­Г­Гї Г¤Г®ГўГ¦ГЁГ­ГЁ ГЄГ°ГЁГёВі
 
-	//визначення кількості стропіл з двох сторін будинку
-	double reftersAmountHeight = ceil(this->roofLength / this->reftersLength); //кількість стропіл по висоті
-	double reftersAmountInMeter = (ceil(this->houseLength / (this->reftersWidth + this->reftersWidthBetween) + 1) * reftersAmountHeight) * 2; //загальна кількість стропіл з двох сторін будинку
+	//ГўГЁГ§Г­Г Г·ГҐГ­Г­Гї ГЄВіГ«ГјГЄГ®Г±ГІВі Г±ГІГ°Г®ГЇВіГ« Г§ Г¤ГўГ®Гµ Г±ГІГ®Г°ВіГ­ ГЎГіГ¤ГЁГ­ГЄГі
+	double reftersAmountHeight = ceil(this->roofLength / this->reftersLength); //ГЄВіГ«ГјГЄВіГ±ГІГј Г±ГІГ°Г®ГЇВіГ« ГЇГ® ГўГЁГ±Г®ГІВі
+	double reftersAmountInMeter = (ceil(this->houseLength / (this->reftersWidth + this->reftersWidthBetween) + 1) * reftersAmountHeight) * 2; //Г§Г ГЈГ Г«ГјГ­Г  ГЄВіГ«ГјГЄВіГ±ГІГј Г±ГІГ°Г®ГЇВіГ« Г§ Г¤ГўГ®Гµ Г±ГІГ®Г°ВіГ­ ГЎГіГ¤ГЁГ­ГЄГі
 	this->reftersAmount = (this->reftersLength * this->reftersWidth * 0.50) * reftersAmountInMeter;
 
 	//cout << "Enter the type of root: 0 for slate, 1 for tiling" << endl;
 	//cin >> roofType;
 
-	//визначення кількості шиферу
+	//ГўГЁГ§Г­Г Г·ГҐГ­Г­Гї ГЄВіГ«ГјГЄГ®Г±ГІВі ГёГЁГґГҐГ°Гі
 	if (this->roofType == ROOF_SLATE_ID) {
-		double slateAmountHeight = 1; //кількість необхідного шиферу по висоті
+		double slateAmountHeight = 1; //ГЄВіГ«ГјГЄВіГ±ГІГј Г­ГҐГ®ГЎГµВіГ¤Г­Г®ГЈГ® ГёГЁГґГҐГ°Гі ГЇГ® ГўГЁГ±Г®ГІВі
 		double tmp = this->slateLength - this->slateLayingOn;
 		while (true) {
 			if (this->slateLength >= this->roofLength) {
@@ -52,14 +52,14 @@ void Roof::roofSize() {
 				this->slateLength += tmp;
 			}
 		}
-		this->slateAmount = (int)(ceil(this->houseLength / this->slateWidth) * slateAmountHeight) * 2; //загальна кількість шиферу = визначена кількість шиферу по довжині будинку помножена на кількість по висоті 
+		this->slateAmount = (int)(ceil(this->houseLength / this->slateWidth) * slateAmountHeight) * 2; //Г§Г ГЈГ Г«ГјГ­Г  ГЄВіГ«ГјГЄВіГ±ГІГј ГёГЁГґГҐГ°Гі = ГўГЁГ§Г­Г Г·ГҐГ­Г  ГЄВіГ«ГјГЄВіГ±ГІГј ГёГЁГґГҐГ°Гі ГЇГ® Г¤Г®ГўГ¦ГЁГ­Ві ГЎГіГ¤ГЁГ­ГЄГі ГЇГ®Г¬Г­Г®Г¦ГҐГ­Г  Г­Г  ГЄВіГ«ГјГЄВіГ±ГІГј ГЇГ® ГўГЁГ±Г®ГІВі 
 		//cout << "General slate amount: " << this->slateAmount << endl;
 		//cout << "General refters amount: " << this->reftersAmount << endl;
 	}
-	//визначення кількості металочерепиці
+	//ГўГЁГ§Г­Г Г·ГҐГ­Г­Гї ГЄВіГ«ГјГЄГ®Г±ГІВі Г¬ГҐГІГ Г«Г®Г·ГҐГ°ГҐГЇГЁГ¶Ві
 	else if (this->roofType == ROOF_TILING_ID) {
 		double squareHomeRoof;
-		squareHomeRoof = this->houseLength * this->roofLength * 2; //площа криші з обох боків
+		squareHomeRoof = this->houseLength * this->roofLength * 2; //ГЇГ«Г®Г№Г  ГЄГ°ГЁГёВі Г§ Г®ГЎГ®Гµ ГЎГ®ГЄВіГў
 		this->tilingAmount = ceil(squareHomeRoof);
  
 		//cout << "General tiling amount: " << this->tilingAmount << endl;
@@ -93,90 +93,90 @@ int Roof::getRoofType(){
 	return this->roofType;
 }
 
-//считать и добавить материалы в новый список
+//Г±Г·ГЁГІГ ГІГј ГЁ Г¤Г®ГЎГ ГўГЁГІГј Г¬Г ГІГҐГ°ГЁГ Г«Г» Гў Г­Г®ГўГ»Г© Г±ГЇГЁГ±Г®ГЄ
 void Roof::addMaterials(vector<MATERIAL*>* mtrl, vector<MATERIAL*>* calcMtrl){
 
 	MATERIAL* tmpMaterial;
 
 
-	//************ добавляем к-во стропил **************
+	//************ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г±ГІГ°Г®ГЇГЁГ« **************
 
-	//проверяем наличие стропил для изготовления крыши
+	//ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г­Г Г«ГЁГ·ГЁГҐ Г±ГІГ°Г®ГЇГЁГ« Г¤Г«Гї ГЁГ§ГЈГ®ГІГ®ГўГ«ГҐГ­ГЁГї ГЄГ°Г»ГёГЁ
 	if (this->getReftersAmount())
 	{
 		for (int i = 0; i < mtrl->size(); i++)
 		{
 			if ((*mtrl)[i]->id == ROOF_REFTERS_ID)
 			{
-				//копируем материал
+				//ГЄГ®ГЇГЁГ°ГіГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г«
 				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
-				//добавляем к-во материала
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г¬Г ГІГҐГ°ГЁГ Г«Г 
 				tmpMaterial->count = this->getReftersAmount();
-				//добавляем материал в новый список
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г« Гў Г­Г®ГўГ»Г© Г±ГЇГЁГ±Г®ГЄ
 				calcMtrl->push_back(tmpMaterial);
 				break;
 			}
 		}
 	}
 
-	//************ добавляем к-во шифера **************
+	//************ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® ГёГЁГґГҐГ°Г  **************
 
-	//проверяем наличие шифера для изготовления крыши
+	//ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г­Г Г«ГЁГ·ГЁГҐ ГёГЁГґГҐГ°Г  Г¤Г«Гї ГЁГ§ГЈГ®ГІГ®ГўГ«ГҐГ­ГЁГї ГЄГ°Г»ГёГЁ
 	if (this->getSlateAmount())
 	{
 		for (int i = 0; i < mtrl->size(); i++)
 		{
 			if ((*mtrl)[i]->id == ROOF_SLATE_ID)
 			{
-				//копируем материал
+				//ГЄГ®ГЇГЁГ°ГіГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г«
 				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
-				//добавляем к-во материала
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г¬Г ГІГҐГ°ГЁГ Г«Г 
 				tmpMaterial->count = this->getSlateAmount();
-				//добавляем материал в новый список
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г« Гў Г­Г®ГўГ»Г© Г±ГЇГЁГ±Г®ГЄ
 				calcMtrl->push_back(tmpMaterial);
 				break;
 			}
 		}
 	}
 
-	//************ добавляем к-во металочерепици **************
+	//************ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г¬ГҐГІГ Г«Г®Г·ГҐГ°ГҐГЇГЁГ¶ГЁ **************
 
-	//проверяем наличие металочерепици для изготовления крыши
+	//ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г­Г Г«ГЁГ·ГЁГҐ Г¬ГҐГІГ Г«Г®Г·ГҐГ°ГҐГЇГЁГ¶ГЁ Г¤Г«Гї ГЁГ§ГЈГ®ГІГ®ГўГ«ГҐГ­ГЁГї ГЄГ°Г»ГёГЁ
 	if (this->getTilingAmount())
 	{
 		for (int i = 0; i < mtrl->size(); i++)
 		{
 			if ((*mtrl)[i]->id == ROOF_TILING_ID)
 			{
-				//копируем материал
+				//ГЄГ®ГЇГЁГ°ГіГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г«
 				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
-				//добавляем к-во материала
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г¬Г ГІГҐГ°ГЁГ Г«Г 
 				tmpMaterial->count = this->getTilingAmount();
-				//добавляем материал в новый список
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г« Гў Г­Г®ГўГ»Г© Г±ГЇГЁГ±Г®ГЄ
 				calcMtrl->push_back(tmpMaterial);
 				break;
 			}
 		}
 	}
 
-	//************ добавляем к-во рубероида **************
+	//************ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г°ГіГЎГҐГ°Г®ГЁГ¤Г  **************
 
-	//проверяем наличие рубероида для изготовления крыши
+	//ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г­Г Г«ГЁГ·ГЁГҐ Г°ГіГЎГҐГ°Г®ГЁГ¤Г  Г¤Г«Гї ГЁГ§ГЈГ®ГІГ®ГўГ«ГҐГ­ГЁГї ГЄГ°Г»ГёГЁ
 	if (this->getRuberoidAmount())
 	{
 		for (int i = 0; i < mtrl->size(); i++)
 		{
 			if ((*mtrl)[i]->id == ROOF_RUBEROID_ID)
 			{
-				//копируем материал
+				//ГЄГ®ГЇГЁГ°ГіГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г«
 				tmpMaterial = new MATERIAL();
 				tmpMaterial = (*mtrl)[i];
-				//добавляем к-во материала
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ-ГўГ® Г¬Г ГІГҐГ°ГЁГ Г«Г 
 				tmpMaterial->count = this->getRuberoidAmount();
-				//добавляем материал в новый список
+				//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г¬Г ГІГҐГ°ГЁГ Г« Гў Г­Г®ГўГ»Г© Г±ГЇГЁГ±Г®ГЄ
 				calcMtrl->push_back(tmpMaterial);
 				break;
 			}
