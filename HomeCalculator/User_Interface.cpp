@@ -32,7 +32,7 @@ User_Interface::User_Interface(HWND window)
 	this->checkbox->set_text("Ïîäâàë");
 	this->mat_wall_box = new GuiListBox(this->m_window, 200, 230, 280, 20);
 	this->mat_roof_box = new GuiListBox(this->m_window, 200, 260, 280, 20);
-	this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 280, 20);
+	//this->mat_panel_box = new GuiListBox(this->m_window, 200, 290, 280, 20);
 
 	this->status = INPUT_DATA;
 	
@@ -51,7 +51,7 @@ User_Interface::~User_Interface()
 	delete this->checkbox;
 	delete this->mat_wall_box;
 	delete this->mat_roof_box;
-	delete this->mat_panel_box;
+	//delete this->mat_panel_box;
 
 }
 
@@ -66,7 +66,7 @@ void User_Interface::show(int cmdShow)
 	this->checkbox->show(cmdShow);
 	this->mat_wall_box->show(cmdShow);
 	this->mat_roof_box->show(cmdShow);
-	this->mat_panel_box->show(cmdShow);
+	//this->mat_panel_box->show(cmdShow);
 }
 
 void User_Interface::enable_all(BOOL Enable)
@@ -79,7 +79,7 @@ void User_Interface::enable_all(BOOL Enable)
 	this->checkbox->set_enable(Enable);
 	this->mat_wall_box->set_enable(Enable);
 	this->mat_roof_box->set_enable(Enable);
-	this->mat_panel_box->set_enable(Enable);
+	//this->mat_panel_box->set_enable(Enable);
 }
 
 void User_Interface::textout(const TCHAR* string, int x, int y)
@@ -110,14 +110,14 @@ void User_Interface::print_static_text()
 		this->textout("Ìàòåğèàë ôóíäàìåíòà", 20, 170);
 		this->textout("Ìàòåğèàë ñòåí", 20, 230);
 		this->textout("Ìàòåğèàë êğûøè", 20, 260);
-		this->textout("Ìàòåğèàë ïåğåêğûòèé", 20, 290);
+		//this->textout("Ìàòåğèàë ïåğåêğûòèé", 20, 290);
 	}
 }
 
 void User_Interface::add_materials()
 {
 	this->mat_fund_box->add_group_materials(this->materials,1);
-	this->mat_panel_box->add_group_materials(this->materials,3);
+	//this->mat_panel_box->add_group_materials(this->materials,3);
 
 	this->mat_roof_box->add_group_materials(this->materials, 3);
 	this->mat_wall_box->add_group_materials(this->materials, 2);
@@ -155,7 +155,7 @@ void  User_Interface::run()
 			this->mat_fund_box->set_top_index(0);
 			this->mat_wall_box->set_top_index(0);
 			this->mat_roof_box->set_top_index(0);
-			this->mat_panel_box->set_top_index(0);
+			//this->mat_panel_box->set_top_index(0);
 
 			this->enable_all(true);
 			this->OK_button->set_text("Ğàñ÷åò");
@@ -181,7 +181,7 @@ void  User_Interface::run()
 				
 				int mat_roof = this->mat_roof_box->get_id_top_material();
 				
-				int mat_panel = this->mat_panel_box->get_id_top_material();
+				//int mat_panel = this->mat_panel_box->get_id_top_material();
 
 				bool podval = this->checkbox->isChecked();
 
@@ -221,8 +221,8 @@ void  User_Interface::run()
 					int X = 10, Y = 320;
 					this->textout("Ìàòåğèàë", 10, Y);
 					this->textout("Êîëè÷åñòâî", 230, Y);
-					this->textout("Öåíà", 330, Y);
-					this->textout("Ñóììà", 400, Y);
+					this->textout("Öåíà/øò", 330, Y);
+					this->textout("Ñóììà ãğí", 400, Y);
 					this->line(5,Y-5, 475, Y-5);
 					this->line(5, Y + 20, 475, Y + 20);
 					this->line(5, Y - 5, 5, Y + 20);
@@ -247,12 +247,12 @@ void  User_Interface::run()
 
 
 								buf = (char*)malloc(_CVTBUFSIZE);
-								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 3, &decimal, &sign);
+								err = _fcvt_s(buf, _CVTBUFSIZE, this->calcMtrl->at(i)->count, 0, &decimal, &sign);
 								this->textout((TCHAR*)buf, 230, Y);
 								_itoa_s(this->calcMtrl->at(i)->price, buf, _CVTBUFSIZE, 10);
 								this->textout((TCHAR*)buf, 330, Y);
 								double summa = this->calcMtrl->at(i)->count * this->calcMtrl->at(i)->price;
-								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 3, &decimal, &sign);
+								err = _fcvt_s(buf, _CVTBUFSIZE, summa, 0, &decimal, &sign);
 								this->textout((TCHAR*)buf, 400, Y);
 								itogo += summa;
 								this->line(5, Y + 20, 475, Y + 20);
@@ -266,7 +266,7 @@ void  User_Interface::run()
 						}
 
 						this->textout("Èòîãî:", 350, Y);
-						err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 3, &decimal, &sign);
+						err = _fcvt_s(buf, _CVTBUFSIZE, itogo, 0, &decimal, &sign);
 						this->textout((TCHAR*)buf, 400, Y);
 						this->line(345, Y + 20, 475, Y + 20);
 						this->line(345, Y - 5, 345, Y + 20);

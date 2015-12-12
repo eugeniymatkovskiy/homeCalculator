@@ -8,7 +8,7 @@ Roof::Roof(double houseLength, double houseWidth, int roofType, int typeBuild) {
 	this->typeBuild = typeBuild;
 	this->frontonHeight = 4;//висота фронтону
 	this->reftersLength = 4.5;// довжина стропіли
-	this->reftersWidthBetween = 0.50; //відстань між стропілами
+	this->reftersWidthBetween = 1; //відстань між стропілами
 	this->reftersWidth = 0.50;// ширина стропіли
 	this->slateWidth = 1.13;// ширина шифера
 	this->slateLength = 1.75;// довжина шифера

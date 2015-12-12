@@ -21,7 +21,7 @@ MainWindow::MainWindow(const TCHAR* title, int x, int y, int width, int height)
 {
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	//wcex.style = CS_HREDRAW;//CS_HREDRAW | CS_VREDRAW;
 	wcex.lpfnWndProc = MainWindow::WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
@@ -37,7 +37,7 @@ MainWindow::MainWindow(const TCHAR* title, int x, int y, int width, int height)
 	this->hwnd = CreateWindowEx(0,
 		"HomeCalculator",
 		title,
-		WS_OVERLAPPEDWINDOW,
+		WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
 		x,
 		y,
 		width,
